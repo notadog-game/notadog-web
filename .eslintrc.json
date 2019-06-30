@@ -10,7 +10,6 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "parser": "babel-eslint",
   "plugins": ["prettier"],
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
