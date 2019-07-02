@@ -12,8 +12,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
+      "pre-commit": "export CI=true && npm run lint",
+      "pre-push": "export CI=true && npm run test"
     }
   },
   "devDependencies": {
