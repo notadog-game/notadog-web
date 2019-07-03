@@ -8,8 +8,9 @@
   import Game from "./containers/Game.svelte";
   import Profile from "./containers/Profile.svelte";
   import Settings from "./containers/Settings.svelte";
+  import Statistics from "./containers/Statistics.svelte";
 
-  import Private from "./components/Private.svelte";
+  import PrivateRoute from "./components/PrivateRoute.svelte";
 
   export let url = "";
 </script>
@@ -26,6 +27,7 @@
     <Link to="game">Game</Link>
     <Link to="profile">Profile</Link>
     <Link to="settings">Settings</Link>
+    <Link to="statistics">Statistics</Link>
   </nav>
 
   <div>
@@ -33,22 +35,20 @@
     <Route path="login" component={Login} />
     <Route path="signup" component={Signup} />
 
-    <Route path="game">
-      <Private>
-        <Game />
-      </Private>
-    </Route>
+    <PrivateRoute path="game">
+      <Game />
+    </PrivateRoute>
 
-    <Route path="profile/*">
-      <Private>
-        <Profile />
-      </Private>
-    </Route>
+    <PrivateRoute path="profile/*">
+      <Profile />
+    </PrivateRoute>
 
-    <Route path="settings/*">
-      <Private>
-        <Settings />
-      </Private>
-    </Route>
+    <PrivateRoute path="settings/*">
+      <Settings />
+    </PrivateRoute>
+
+    <PrivateRoute path="statistics">
+      <Statistics />
+    </PrivateRoute>
   </div>
 </Router>
