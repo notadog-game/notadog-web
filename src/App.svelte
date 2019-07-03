@@ -4,6 +4,7 @@
   import Home from "./containers/Home.svelte";
   import Login from "./containers/Login.svelte";
   import Signup from "./containers/Signup.svelte";
+  import Empty from "./containers/Empty.svelte";
 
   import Game from "./containers/Game.svelte";
   import Profile from "./containers/Profile.svelte";
@@ -50,5 +51,7 @@
     <PrivateRoute path="statistics">
       <Statistics />
     </PrivateRoute>
+
+    <Route path="*" component={Empty} />
   </div>
 </Router>
