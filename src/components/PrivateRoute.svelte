@@ -1,7 +1,5 @@
 <script>
-  import { onMount } from "svelte";
-  import { Route, Link, navigate } from "svelte-routing";
-
+  import { Route, Link } from "svelte-routing";
   export let path = "";
 </script>
 
