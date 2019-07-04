@@ -12,6 +12,7 @@ body {
   --NAD_WHITE: #ffffff;
   --NAD_MILK: #e6e6e6;
   --NAD_BLUE: #0960bd;
+  --NAD_BG: #d8d8d8;
 
   color: #333;
   margin: 0;
@@ -97,6 +98,42 @@ input::placeholder {
 .container {
   margin: 0 auto;
   padding: 0 16px;
+}
+.play-btn:hover svg path {
+  fill: var(--NAD_WHITE);
+  stroke: var(--NAD_BLACK);
+}
+.profile-btn {
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-family: Poppins;
+  font-size: 16px;
+  height: 63px;
+  line-height: 63px;
+  padding: 0 20px;
+  text-align: left;
+  width: 100%;
+}
+.user {
+  display: flex;
+}
+.user .avatar {
+  background-color: var(--NAD_BG);
+  border-radius: 50%;
+  height: 50px;
+  margin-right: 20px;
+  width: 50px;
+}
+.user .user-info * {
+  font-family: Poppins;
+}
+.user .user-name {
+  color: var(--NAD_BLACK);
+}
+.user .user-points {
+  color: var(--NAD_GREY);
 }
 
 @media (min-width: 768px) {

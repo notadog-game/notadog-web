@@ -2,6 +2,10 @@
   import Button from "./components/Button.svelte";
   import Input from "./components/Input.svelte";
   import PlayButton from "./components/PlayButton.svelte";
+  import ProfileButton from "./components/ProfileButton.svelte";
+  import PlaySVG from "./components/PlaySVG.svelte";
+  import StartSVG from "./components/StartSVG.svelte";
+  import User from "./components/User.svelte";
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./containers/Home.svelte";
   import Login from "./containers/Login.svelte";
@@ -16,7 +20,7 @@
   export let url = "";
   export let name;
 
-    function testFunction(data) {
+  function testFunction(data) {
     if (data) {
       console.log("data :", data);
     } else {
@@ -39,7 +43,15 @@
     exercitationem maxime quas inventore alias impedit excepturi iste
     repudiandae obcaecati.
   </span>
-  <PlayButton />
+  <PlayButton>
+    <StartSVG />
+  </PlayButton>
+  <PlayButton>
+    <PlaySVG />
+  </PlayButton>
+
+  <ProfileButton/>
+  <User name={'Adam Sandler'} points={150}/>
 </div>
 <Router {url}>
   <nav>
