@@ -17,7 +17,7 @@
 <style>
 
 </style>
-
+<div>API_URL</div>
 <Router {url}>
   <nav>
     <Link to="/">Home</Link>
