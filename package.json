@@ -12,8 +12,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "export CI=true && npm run lint",
-      "pre-push": "export CI=true && npm run test"
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
     }
   },
   "devDependencies": {
@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "sirv-cli": "^0.4.4"
+    "sirv-cli": "^0.4.4",
+    "svelte-routing": "^1.2.1"
   }
 }
