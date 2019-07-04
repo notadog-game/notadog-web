@@ -33,13 +33,13 @@
     <Route path="/" component={Home} />
 
     {#if true}
-      <Route path="login" component={Login} />
-      <Route path="signup" component={Signup} />
-    {:else}
       <Route path="/game" component={Game} />
       <Route path="profile/*" component={Profile} />
       <Route path="settings/*" component={Settings} />
       <Route path="statistics" component={Statistics} />
+    {:else}
+      <Route path="login" component={Login} />
+      <Route path="signup" component={Signup} />
     {/if}
     <Route path="*" component={Empty} />
   </div>
