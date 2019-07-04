@@ -11,8 +11,6 @@
   import Settings from "./containers/Settings.svelte";
   import Statistics from "./containers/Statistics.svelte";
 
-  import PrivateRoute from "./components/PrivateRoute.svelte";
-
   export let url = "";
 </script>
 
@@ -33,25 +31,16 @@
 
   <div>
     <Route path="/" component={Home} />
-    <Route path="login" component={Login} />
-    <Route path="signup" component={Signup} />
 
-    <PrivateRoute path="game">
-      <Game />
-    </PrivateRoute>
-
-    <PrivateRoute path="profile/*">
-      <Profile />
-    </PrivateRoute>
-
-    <PrivateRoute path="settings/*">
-      <Settings />
-    </PrivateRoute>
-
-    <PrivateRoute path="statistics">
-      <Statistics />
-    </PrivateRoute>
-
+    {#if true}
+      <Route path="login" component={Login} />
+      <Route path="signup" component={Signup} />
+    {:else}
+      <Route path="/game" component={Game} />
+      <Route path="profile/*" component={Profile} />
+      <Route path="settings/*" component={Settings} />
+      <Route path="statistics" component={Statistics} />
+    {/if}
     <Route path="*" component={Empty} />
   </div>
 </Router>
