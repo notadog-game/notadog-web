@@ -4,9 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { env_vars } from './config.js';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -20,8 +18,7 @@ export default {
 	},
 	plugins: [
 		replace({
-			// replaces all process.env fields with their values
-			values: process.env,
+			values: env_vars,
 			// a minimatch pattern, or array of patterns, of files that
 			// should be processed by this plugin (if omitted, all files
 			// are included by default)
