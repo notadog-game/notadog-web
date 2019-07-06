@@ -1,6 +1,6 @@
 <script>
+  
   import { Router, Link, Route } from "svelte-routing";
-
   import Home from "./containers/Home.svelte";
   import Login from "./containers/Login.svelte";
   import Signup from "./containers/Signup.svelte";
@@ -10,14 +10,23 @@
   import Profile from "./containers/Profile.svelte";
   import Settings from "./containers/Settings.svelte";
   import Statistics from "./containers/Statistics.svelte";
+  import Styleguide from "./containers/Styleguide.svelte";
 
   export let url = "";
+  export let name;
+
+  function testFunction(data) {
+    if (data) {
+      console.log("data :", data);
+    } else {
+      console.log("no-data");
+    }
+  }
 </script>
 
 <style>
 
 </style>
-
 <Router {url}>
   <nav>
     <Link to="/">Home</Link>
@@ -27,6 +36,7 @@
     <Link to="profile">Profile</Link>
     <Link to="settings">Settings</Link>
     <Link to="statistics">Statistics</Link>
+    <Link to="styleguide">Styleguide</Link>
   </nav>
 
   <div>
@@ -37,6 +47,7 @@
       <Route path="profile/*" component={Profile} />
       <Route path="settings/*" component={Settings} />
       <Route path="statistics" component={Statistics} />
+      <Route path="styleguide" component={Styleguide} />
     {:else}
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
