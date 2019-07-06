@@ -3,9 +3,9 @@
   import Input from "./components/Input.svelte";
   import PlayButton from "./components/PlayButton.svelte";
   import ProfileButton from "./components/ProfileButton.svelte";
-  import PlaySVG from "./components/PlaySVG.svelte";
-  import StartSVG from "./components/StartSVG.svelte";
-  import User from "./components/User.svelte";
+  import PlayIcon from "./components/icons/PlayIcon.svelte";
+  import StartIcon from "./components/icons/StartIcon.svelte";
+  import UserCard from "./components/UserCard.svelte";
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./containers/Home.svelte";
   import Login from "./containers/Login.svelte";
@@ -44,14 +44,14 @@
     repudiandae obcaecati.
   </span>
   <PlayButton>
-    <StartSVG />
+    <StartIcon />
   </PlayButton>
   <PlayButton>
-    <PlaySVG />
+    <PlayIcon />
   </PlayButton>
 
   <ProfileButton/>
-  <User name={'Adam Sandler'} points={150}/>
+  <UserCard name={'Adam Sandler'} points={150}/>
 </div>
 <Router {url}>
   <nav>

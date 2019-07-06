@@ -3,7 +3,7 @@
 
   const dispatch = createEventDispatcher();
 
-  export let text = 'Button';
+  export let text = "Button";
   function click() {
     dispatch("buttonClick");
   }

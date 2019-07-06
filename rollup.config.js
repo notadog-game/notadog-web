@@ -12,7 +12,7 @@ export default {
     sourcemap: true,
     format: "iife",
     name: "app",
-    file: "public/bundle.js"
+    file: "public/bundle.js",
   },
   plugins: [
     svelte({
@@ -22,8 +22,8 @@ export default {
       // a separate file — better for performance
       css: css => {
         css.write("public/bundle.css");
-      }
-		}),
+      },
+    }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
@@ -39,9 +39,9 @@ export default {
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser()
+    production && terser(),
   ],
   watch: {
-    clearScreen: false
-  }
+    clearScreen: false,
+  },
 };
