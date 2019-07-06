@@ -92,10 +92,6 @@ h2 {
   font-family: Poppins Medium;
 }
 
-.play-btn:hover svg path {
-  fill: var(--NAD_WHITE);
-  stroke: var(--NAD_BLACK);
-}
 .container {
   margin: 0 auto;
   padding: 0 16px;
