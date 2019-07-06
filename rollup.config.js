@@ -22,7 +22,7 @@ export default {
 	},
 	plugins: [
 		replace({
-			API_HOST: process.env.API_HOST,
+			ENV_API_HOST: process.env.API_HOST,
 			// a minimatch pattern, or array of patterns, of files that
 			// should be processed by this plugin (if omitted, all files
 			// are included by default)
