@@ -14,6 +14,11 @@
   .play-btn:hover {
     background-color: var(--NAD_BLACK);
   }
+
+  .play-btn:hover :global(svg path) {
+    fill: var(--NAD_WHITE);
+    stroke: var(--NAD_BLACK);
+  }
   
 </style>
 
