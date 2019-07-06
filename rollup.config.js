@@ -4,9 +4,13 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
-import { env_vars } from './config.js';
+import dotenv from 'dotenv';
 
 const production = !process.env.ROLLUP_WATCH;
+
+if (!production) {
+	dotenv.config();
+}
 
 export default {
 	input: 'src/main.js',
@@ -18,7 +22,7 @@ export default {
 	},
 	plugins: [
 		replace({
-			values: env_vars,
+			API_HOST: process.env.API_HOST,
 			// a minimatch pattern, or array of patterns, of files that
 			// should be processed by this plugin (if omitted, all files
 			// are included by default)
