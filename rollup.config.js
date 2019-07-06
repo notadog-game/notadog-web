@@ -3,8 +3,14 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import replace from 'rollup-plugin-replace';
+import dotenv from 'dotenv';
 
 const production = !process.env.ROLLUP_WATCH;
+
+if (!production) {
+	dotenv.config();
+}
 
 export default {
 	input: 'src/main.js',
@@ -15,6 +21,13 @@ export default {
 		file: 'public/bundle.js'
 	},
 	plugins: [
+		replace({
+			ENV_API_HOST: process.env.API_HOST,
+			// a minimatch pattern, or array of patterns, of files that
+			// should be processed by this plugin (if omitted, all files
+			// are included by default)
+			include: 'src/**',
+		}),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
