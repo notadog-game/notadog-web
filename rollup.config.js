@@ -26,7 +26,7 @@ export default {
       // a minimatch pattern, or array of patterns, of files that
       // should be processed by this plugin (if omitted, all files
       // are included by default)
-      include: "src/**",
+      include: "src/config.js",
     }),
     svelte({
       // enable run-time checks when not in production
