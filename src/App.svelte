@@ -1,5 +1,4 @@
 <script>
-  
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./containers/Home.svelte";
   import Login from "./containers/Login.svelte";
@@ -13,20 +12,12 @@
   import Styleguide from "./containers/Styleguide.svelte";
 
   export let url = "";
-  export let name;
-
-  function testFunction(data) {
-    if (data) {
-      console.log("data :", data);
-    } else {
-      console.log("no-data");
-    }
-  }
 </script>
 
 <style>
 
 </style>
+
 <Router {url}>
   <nav>
     <Link to="/">Home</Link>
