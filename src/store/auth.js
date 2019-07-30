@@ -4,6 +4,7 @@ import { navigate } from "svelte-routing";
 export const token = writable("");
 
 export const getToken = payload => {
+  console.log("payload :", payload);
   myRequest().then(function(r) {
     if (r >= 0.5) {
       token.set(r);
@@ -15,7 +16,7 @@ export const getToken = payload => {
 };
 
 let myRequest = function() {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve(Math.random());
     }, 2000);
