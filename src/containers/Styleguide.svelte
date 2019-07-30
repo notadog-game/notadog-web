@@ -20,7 +20,7 @@ import Button from "../components/Button.svelte";
   <h1>Not a Dog!</h1>
   <h2>Not a Dog!</h2>
   <Button on:buttonClick={testFunction} text={'NOT A DOG!!!'} />
-  <Input on:inputChange={testFunction} text={'Заполните инпут'} />
+  <Input on:inputChange={testFunction} placeholder={'Заполните инпут'} />
   <span>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo rerum
     exercitationem maxime quas inventore alias impedit excepturi iste

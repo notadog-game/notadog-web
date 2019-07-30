@@ -1,5 +1,6 @@
 <script>
-  
+  import { beforeUpdate, afterUpdate } from "svelte";
+
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./containers/Home.svelte";
   import Login from "./containers/Login.svelte";
@@ -12,8 +13,12 @@
   import Statistics from "./containers/Statistics.svelte";
   import Styleguide from "./containers/Styleguide.svelte";
 
+  import { token } from "./store/auth";
+
   export let url = "";
   export let name;
+
+  console.log("111 :", $token);
 
   function testFunction(data) {
     if (data) {
@@ -22,11 +27,19 @@
       console.log("no-data");
     }
   }
+
+  let myToken = "";
+
+  beforeUpdate(() => {
+    myToken = $token;
+    console.log("myToken :", myToken);
+  });
 </script>
 
 <style>
 
 </style>
+
 <Router {url}>
   <nav>
     <Link to="/">Home</Link>
@@ -37,12 +50,13 @@
     <Link to="settings">Settings</Link>
     <Link to="statistics">Statistics</Link>
     <Link to="styleguide">Styleguide</Link>
+    <div>123: {$token}</div>
+
   </nav>
 
   <div>
     <Route path="/" component={Home} />
-
-    {#if true}
+    {#if myToken}
       <Route path="/game" component={Game} />
       <Route path="profile/*" component={Profile} />
       <Route path="settings/*" component={Settings} />
