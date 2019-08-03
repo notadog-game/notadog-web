@@ -12,6 +12,6 @@ export const login = async ({ email, password }) => {
   try {
     return await requestService.post("/users/login", { email, password });
   } catch (e) {
-    console.log("e :", e);
+    throw new Error(e);
   }
 };

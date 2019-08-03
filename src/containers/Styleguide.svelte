@@ -1,15 +1,14 @@
 <script>
-import Button from "../components/Button.svelte";
-  import Input from "../components/Input.svelte";
+  import Button from "../components/Button.svelte";
   import PlayButton from "../components/PlayButton.svelte";
   import ProfileButton from "../components/ProfileButton.svelte";
   import PlayIcon from "../components/icons/PlayIcon.svelte";
   import StartIcon from "../components/icons/StartIcon.svelte";
   import UserCard from "../components/UserCard.svelte";
 
-  function testFunction(data) {
-    if (data) {
-      console.log("data :", data);
+  function testFunction(evt) {
+    if (evt) {
+      console.log("data :", evt);
     } else {
       console.log("no-data");
     }
@@ -20,7 +19,7 @@ import Button from "../components/Button.svelte";
   <h1>Not a Dog!</h1>
   <h2>Not a Dog!</h2>
   <Button on:buttonClick={testFunction} text={'NOT A DOG!!!'} />
-  <Input on:inputChange={testFunction} placeholder={'Заполните инпут'} />
+  <input on:change={testFunction} placeholder={'Заполните инпут'} />
   <span>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo rerum
     exercitationem maxime quas inventore alias impedit excepturi iste
@@ -33,6 +32,6 @@ import Button from "../components/Button.svelte";
     <PlayIcon />
   </PlayButton>
 
-  <ProfileButton/>
-  <UserCard name={'Adam Sandler'} points={150}/>
+  <ProfileButton />
+  <UserCard name={'Adam Sandler'} points={150} />
 </div>

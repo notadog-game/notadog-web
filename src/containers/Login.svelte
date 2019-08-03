@@ -1,31 +1,39 @@
 <script>
-import Input from "../components/Input.svelte";
-import Button from "../components/Button.svelte";
-import { Router, Link, Route } from "svelte-routing";
-import { token, getToken } from "../store/auth";
+  import Button from "../components/Button.svelte";
+  import { Router, Link, Route } from "svelte-routing";
+  import { token, getToken } from "../store/auth";
 
-let name = ''
-let data = {
-  email: '',
-  password: '',
-}
+  let email = "";
+  let password = "";
 
-function setUser() {
-  getToken(data)
-}
+  function setUser() {
+    getToken({
+      email,
+      password
+    });
+  }
 
-function login() {  
-  console.log('data :', data);
-  getToken(data)
-}
+  function login() {
+    console.log("data :", {
+      email,
+      password
+    });
+    getToken({
+      email,
+      password
+    });
+  }
 
-function testFunction(evt) {
+  function testFunction(evt) {
     if (evt) {
       console.log("data :", evt);
     } else {
       console.log("no-evt");
     }
-    console.log('data :', data);
+    console.log("data :", {
+      email,
+      password
+    });
   }
 </script>
 
@@ -45,10 +53,27 @@ function testFunction(evt) {
 <div class="container">
   <div class="sign-up">
     <h1>Not a Dog!</h1>
-    <Input bind:name={data.email} on:inputChange={testFunction} placeholder={'email'} />
-    <Input bind:name={data.password} on:inputChange={testFunction} placeholder={'password'} />
+
+    <input
+      class="input"
+      type="text"
+      placeholder="Enter your email"
+      on:change={testFunction}
+      bind:value={email} />
+
+    <input
+      class="input"
+      type="password"
+      placeholder="Enter your password"
+      on:change={testFunction}
+      bind:value={password} />
+
     <Button on:buttonClick={setUser} text={'NOT A DOG!!!'} />
-    <div><span>already onboard?</span><Link to="login">login</Link> </div>
+
+    <div>
+      <span>Want to signup?</span>
+      <Link to="signup">Signup</Link>
+    </div>
     <div>{$token}</div>
   </div>
 </div>

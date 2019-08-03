@@ -34,6 +34,10 @@ export class requestService {
   }
 
   static handleResponse(promise) {
-    return promise.then(res => res.data).catch(error => console.log(error));
+    return promise
+      .then(res => res.data)
+      .catch(e => {
+        throw new Error(e);
+      });
   }
 }
