@@ -14,25 +14,15 @@
   import Styleguide from "./containers/Styleguide.svelte";
 
   import { token } from "./store/auth";
+  import { tokenService } from "./services/tokenService";
 
   export let url = "";
   export let name;
 
-  console.log("111 :", $token);
-
-  function testFunction(data) {
-    if (data) {
-      console.log("data :", data);
-    } else {
-      console.log("no-data");
-    }
-  }
-
   let myToken = "";
 
   beforeUpdate(() => {
-    myToken = $token;
-    console.log("myToken :", myToken);
+    myToken = tokenService.get();
   });
 </script>
 
@@ -50,8 +40,6 @@
     <Link to="settings">Settings</Link>
     <Link to="statistics">Statistics</Link>
     <Link to="styleguide">Styleguide</Link>
-    <div>123: {$token}</div>
-
   </nav>
 
   <div>

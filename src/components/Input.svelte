@@ -4,6 +4,7 @@
   const dispatch = createEventDispatcher();
 
   export let name = ''
+  export let type = 'text'
   let data = ''
   export let placeholder = 'enter your name'
   function change() {
