@@ -3,9 +3,10 @@
 
   const dispatch = createEventDispatcher();
 
-  export let text;
+  export let name = ''
+  export let type = 'text'
   let data = ''
-  let placeholder = 'enter your name'
+  export let placeholder = 'enter your name'
   function change() {
     dispatch("inputChange", {
       data: data
@@ -20,7 +21,7 @@ input {
   color: var(--NAD_BLACK);
   font-family: Poppins;
   min-width: 0;
-  padding-left: 10px;
+  padding: 20px 10px;
   width: 100%;
 }
 input:focus {
@@ -32,4 +33,4 @@ input::placeholder {
 }
 </style>
 
-<input type="text" placeholder={placeholder} on:change = {change} bind:value={data}/>
+<input type="text" placeholder={placeholder} on:change = {change} bind:value={name}/>

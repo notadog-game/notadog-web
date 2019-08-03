@@ -1,4 +1,6 @@
 <script>
+  import { beforeUpdate, afterUpdate } from "svelte";
+
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./containers/Home.svelte";
   import Login from "./containers/Login.svelte";
@@ -11,7 +13,17 @@
   import Statistics from "./containers/Statistics.svelte";
   import Styleguide from "./containers/Styleguide.svelte";
 
+  import { token } from "./store/auth";
+  import { tokenService } from "./services/tokenService";
+
   export let url = "";
+  export let name;
+
+  let myToken = "";
+
+  beforeUpdate(() => {
+    myToken = tokenService.get();
+  });
 </script>
 
 <style>
@@ -32,8 +44,7 @@
 
   <div>
     <Route path="/" component={Home} />
-
-    {#if true}
+    {#if myToken}
       <Route path="/game" component={Game} />
       <Route path="profile/*" component={Profile} />
       <Route path="settings/*" component={Settings} />
