@@ -1,34 +1,21 @@
 <script>
   import Button from "../components/Button.svelte";
   import { Router, Link, Route } from "svelte-routing";
-  import { token, getToken } from "../store/auth";
+  import { signup } from "../services/api";
+  import { handleError } from "../services/errors";
 
   let name = "";
   let email = "";
   let password = "";
   let password1 = "";
 
-  function setUser() {
-    getToken({
-      name,
-      email,
-      password,
-      password1
-    });
-  }
-
-  function testFunction(evt) {
-    if (evt) {
-      console.log("data :", evt);
-    } else {
-      console.log("no-evt");
+  async function signupClickHandler() {
+    try {
+      const token = await signup({ name, email, password });
+      tokenService.set(token);
+    } catch (e) {
+      handleError(e);
     }
-    console.log("data :", {
-      name,
-      email,
-      password,
-      password1
-    });
   }
 </script>
 
@@ -53,35 +40,30 @@
       class="input"
       type="text"
       placeholder="Enter your name"
-      on:change={testFunction}
       bind:value={name} />
 
     <input
       class="input"
       type="text"
       placeholder="Enter your email"
-      on:change={testFunction}
       bind:value={email} />
 
     <input
       class="input"
       type="password"
       placeholder="Enter your password"
-      on:change={testFunction}
       bind:value={password} />
 
     <input
       class="input"
       type="password"
       placeholder="Repeat your password"
-      on:change={testFunction}
       bind:value={password1} />
 
-    <Button on:buttonClick={setUser} text={'NOT A DOG!!!'} />
+    <Button on:buttonClick={signupClickHandler} text={'NOT A DOG!!!'} />
     <div>
       <span>already onboard?</span>
       <Link to="login">login</Link>
     </div>
-    <div>{$token}</div>
   </div>
 </div>

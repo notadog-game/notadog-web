@@ -1,39 +1,21 @@
 <script>
-  import Button from "../components/Button.svelte";
   import { Router, Link, Route } from "svelte-routing";
-  import { token, getToken } from "../store/auth";
+  import Button from "../components/Button.svelte";
+  import { tokenService } from "../services/token";
+  import { login } from "../services/api";
+  import { handleError } from "../services/errors";
 
   let email = "";
   let password = "";
 
-  function setUser() {
-    getToken({
-      email,
-      password
-    });
-  }
-
-  function login() {
-    console.log("data :", {
-      email,
-      password
-    });
-    getToken({
-      email,
-      password
-    });
-  }
-
-  function testFunction(evt) {
-    if (evt) {
-      console.log("data :", evt);
-    } else {
-      console.log("no-evt");
+  async function loginClickHandler() {
+    try {
+      const token = await login({ email, password });
+      tokenService.set(token);
+      window.location.replace("/game");
+    } catch (e) {
+      handleError(e);
     }
-    console.log("data :", {
-      email,
-      password
-    });
   }
 </script>
 
@@ -58,22 +40,19 @@
       class="input"
       type="text"
       placeholder="Enter your email"
-      on:change={testFunction}
       bind:value={email} />
 
     <input
       class="input"
       type="password"
       placeholder="Enter your password"
-      on:change={testFunction}
       bind:value={password} />
 
-    <Button on:buttonClick={setUser} text={'NOT A DOG!!!'} />
+    <Button on:buttonClick={loginClickHandler} text={'NOT A DOG!!!'} />
 
     <div>
       <span>Want to signup?</span>
       <Link to="signup">Signup</Link>
     </div>
-    <div>{$token}</div>
   </div>
 </div>

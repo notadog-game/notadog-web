@@ -1,5 +1,5 @@
 import axios from "axios";
-import { tokenService } from "./tokenService";
+import { tokenService } from "./token";
 import { config } from "../config.js";
 
 if (config.apiHost == "undefined") {
