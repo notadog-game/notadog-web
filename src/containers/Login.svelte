@@ -1,31 +1,21 @@
 <script>
-import Input from "../components/Input.svelte";
-import Button from "../components/Button.svelte";
-import { Router, Link, Route } from "svelte-routing";
-import { token, getToken } from "../store/auth";
+  import { Router, Link, Route } from "svelte-routing";
+  import Button from "../components/Button.svelte";
+  import { tokenService } from "../services/token";
+  import { login } from "../services/api";
+  import { handleError } from "../services/errors";
 
-let name = ''
-let data = {
-  email: '',
-  password: '',
-}
+  let email = "";
+  let password = "";
 
-function setUser() {
-  getToken(data)
-}
-
-function login() {  
-  console.log('data :', data);
-  getToken(data)
-}
-
-function testFunction(evt) {
-    if (evt) {
-      console.log("data :", evt);
-    } else {
-      console.log("no-evt");
+  async function loginClickHandler() {
+    try {
+      const token = await login({ email, password });
+      tokenService.set(token);
+      window.location.replace("/game");
+    } catch (e) {
+      handleError(e);
     }
-    console.log('data :', data);
   }
 </script>
 
@@ -45,10 +35,24 @@ function testFunction(evt) {
 <div class="container">
   <div class="sign-up">
     <h1>Not a Dog!</h1>
-    <Input bind:name={data.email} on:inputChange={testFunction} placeholder={'email'} />
-    <Input bind:name={data.password} on:inputChange={testFunction} placeholder={'password'} />
-    <Button on:buttonClick={setUser} text={'NOT A DOG!!!'} />
-    <div><span>already onboard?</span><Link to="login">login</Link> </div>
-    <div>{$token}</div>
+
+    <input
+      class="input"
+      type="text"
+      placeholder="Enter your email"
+      bind:value={email} />
+
+    <input
+      class="input"
+      type="password"
+      placeholder="Enter your password"
+      bind:value={password} />
+
+    <Button on:buttonClick={loginClickHandler} text={'NOT A DOG!!!'} />
+
+    <div>
+      <span>Want to signup?</span>
+      <Link to="signup">Signup</Link>
+    </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { tokenService } from "./tokenService";
+import { tokenService } from "./token";
 import { config } from "../config.js";
 
 if (config.apiHost == "undefined") {
@@ -34,6 +34,10 @@ export class requestService {
   }
 
   static handleResponse(promise) {
-    return promise.then(res => res.data).catch(error => console.log(error));
+    return promise
+      .then(res => res.data)
+      .catch(e => {
+        throw new Error(e);
+      });
   }
 }

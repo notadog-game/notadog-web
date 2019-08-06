@@ -1,28 +1,21 @@
 <script>
-import Input from "../components/Input.svelte";
-import Button from "../components/Button.svelte";
-import { Router, Link, Route } from "svelte-routing";
-import { token, getToken } from "../store/auth";
+  import Button from "../components/Button.svelte";
+  import { Router, Link, Route } from "svelte-routing";
+  import { signup } from "../services/api";
+  import { handleError } from "../services/errors";
 
-let name = ''
-let data = {
-  name: '',
-  email: '',
-  password: '',
-  copyPassword: '',
-}
+  let name = "";
+  let email = "";
+  let password = "";
+  let password1 = "";
 
-function setUser() {
-  getToken(data)
-}
-
-function testFunction(evt) {
-    if (evt) {
-      console.log("data :", evt);
-    } else {
-      console.log("no-evt");
+  async function signupClickHandler() {
+    try {
+      const token = await signup({ name, email, password });
+      tokenService.set(token);
+    } catch (e) {
+      handleError(e);
     }
-    console.log('data :', data);
   }
 </script>
 
@@ -42,12 +35,35 @@ function testFunction(evt) {
 <div class="container">
   <div class="sign-up">
     <h1>Not a Dog!</h1>
-    <Input bind:name={data.name} on:inputChange={testFunction} placeholder={'name'} />
-    <Input bind:name={data.email} on:inputChange={testFunction} placeholder={'email'} />
-    <Input bind:name={data.password} on:inputChange={testFunction} placeholder={'password'} />
-    <Input bind:name={data.name} on:inputChange={testFunction} placeholder={'confirm password'} />
-    <Button on:buttonClick={setUser} text={'NOT A DOG!!!'} />
-    <div><span>already onboard?</span><Link to="login">login</Link> </div>
-    <div>{$token}</div>
+
+    <input
+      class="input"
+      type="text"
+      placeholder="Enter your name"
+      bind:value={name} />
+
+    <input
+      class="input"
+      type="text"
+      placeholder="Enter your email"
+      bind:value={email} />
+
+    <input
+      class="input"
+      type="password"
+      placeholder="Enter your password"
+      bind:value={password} />
+
+    <input
+      class="input"
+      type="password"
+      placeholder="Repeat your password"
+      bind:value={password1} />
+
+    <Button on:buttonClick={signupClickHandler} text={'NOT A DOG!!!'} />
+    <div>
+      <span>already onboard?</span>
+      <Link to="login">login</Link>
+    </div>
   </div>
 </div>

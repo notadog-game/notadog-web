@@ -1,5 +1,5 @@
 <script>
-  import { beforeUpdate, afterUpdate } from "svelte";
+  import { beforeUpdate } from "svelte";
 
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./containers/Home.svelte";
@@ -13,11 +13,9 @@
   import Statistics from "./containers/Statistics.svelte";
   import Styleguide from "./containers/Styleguide.svelte";
 
-  import { token } from "./store/auth";
-  import { tokenService } from "./services/tokenService";
+  import { tokenService } from "./services/token";
 
   export let url = "";
-  export let name;
 
   let myToken = "";
 
