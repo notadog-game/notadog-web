@@ -8,7 +8,7 @@
     "start": "node server.js",
     "start:dev": "sirv public --single --dev --port 8080",
     "test": "jest",
-    "lint": "npx eslint src"
+    "lint": "npx eslint --fix src"
   },
   "husky": {
     "hooks": {
