@@ -23,6 +23,7 @@ export default {
   plugins: [
     replace({
       ENV_API_HOST: process.env.API_HOST,
+      ENV_API_WS_GAME_HOST: process.env.API_WS_GAME_HOST,
       // a minimatch pattern, or array of patterns, of files that
       // should be processed by this plugin (if omitted, all files
       // are included by default)

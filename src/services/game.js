@@ -1,11 +1,12 @@
 import signalR from "@aspnet/signalr/dist/browser/signalr";
+import { config } from "../config.js";
 
 let connection;
 
 export class GameHub {
   static init() {
     connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://localhost:5001/gameHub")
+      .withUrl(config.apiWsGameHost)
       .configureLogging(signalR.LogLevel.Information)
       .build();
 
