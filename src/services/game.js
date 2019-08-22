@@ -1,12 +1,19 @@
 import signalR from "@aspnet/signalr/dist/browser/signalr";
 import { config } from "../config.js";
+import { tokenService } from "./token";
 
 let connection;
 
 export class GameHub {
   static init() {
     connection = new signalR.HubConnectionBuilder()
-      .withUrl(config.apiWsGameHost)
+      .withUrl(config.apiWsGameHost, {
+        accessTokenFactory: async () => {
+          return `Bearer ${tokenService.get()}`;
+        },
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
+      })
       .configureLogging(signalR.LogLevel.Information)
       .build();
 
