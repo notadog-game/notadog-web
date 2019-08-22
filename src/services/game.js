@@ -12,7 +12,7 @@ export class GameHub {
           return `Bearer ${tokenService.get()}`;
         },
         skipNegotiation: true,
-        transport: signalR.HttpTransportType.WebSockets
+        transport: signalR.HttpTransportType.WebSockets,
       })
       .configureLogging(signalR.LogLevel.Information)
       .build();

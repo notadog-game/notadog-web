@@ -10,7 +10,7 @@ const requestProvider = axios.create({
   baseURL: config.apiHost,
   timeout: 15000,
   headers: {
-    Authorization: `Bearer ${tokenService.get()}` || "",
+    Authorization: `Bearer ${tokenService.get()}`,
     Accept: "application/json, text/plain",
     "Content-Type": "application/json",
   },
