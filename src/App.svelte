@@ -19,6 +19,12 @@
 
   let myToken = "";
 
+  function logoutClickHandler(e) {
+    e.preventDefault();
+    tokenService.remove();
+    window.location.replace("/login");
+  }
+
   beforeUpdate(() => {
     myToken = tokenService.get();
   });
@@ -31,13 +37,17 @@
 <Router {url}>
   <nav>
     <Link to="/">Home</Link>
-    <Link to="login">Login</Link>
-    <Link to="signup">Signup</Link>
-    <Link to="game">Game</Link>
-    <Link to="profile">Profile</Link>
-    <Link to="settings">Settings</Link>
-    <Link to="statistics">Statistics</Link>
-    <Link to="styleguide">Styleguide</Link>
+    {#if myToken}
+      <Link to="game">Game</Link>
+      <Link to="profile">Profile</Link>
+      <Link to="settings">Settings</Link>
+      <Link to="statistics">Statistics</Link>
+      <Link to="styleguide">Styleguide</Link>
+      <a href="#" on:click={logoutClickHandler}>Logout</a>
+    {:else}
+      <Link to="login">Login</Link>
+      <Link to="signup">Signup</Link>
+    {/if}
   </nav>
 
   <div>

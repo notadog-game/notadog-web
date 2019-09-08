@@ -27,3 +27,19 @@ export const signup = async ({ name, email, password }) => {
     throw new Error(e);
   }
 };
+
+export const createGame = async ({ forceAdding }) => {
+  try {
+    return await requestService.post("/Game", forceAdding);
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+export const connectToGame = async ({ forceAdding }) => {
+  try {
+    return await requestService.put("/Game", forceAdding);
+  } catch (e) {
+    throw new Error(e);
+  }
+};
