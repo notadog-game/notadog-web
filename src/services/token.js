@@ -7,4 +7,7 @@ export const tokenService = {
   set: function(value) {
     localStorage.setItem(key, value);
   },
+  remove: function() {
+    localStorage.removeItem(key);
+  },
 };

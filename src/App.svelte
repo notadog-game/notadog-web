@@ -8,6 +8,8 @@
   import Empty from "./containers/Empty.svelte";
 
   import Game from "./containers/Game.svelte";
+  import GameCreate from "./containers/GameCreate.svelte";
+  import GameId from "./containers/GameId.svelte";
   import Profile from "./containers/Profile.svelte";
   import Settings from "./containers/Settings.svelte";
   import Statistics from "./containers/Statistics.svelte";
@@ -18,6 +20,12 @@
   export let url = "";
 
   let myToken = "";
+
+  function logoutClickHandler(e) {
+    e.preventDefault();
+    tokenService.remove();
+    window.location.replace("/login");
+  }
 
   beforeUpdate(() => {
     myToken = tokenService.get();
@@ -31,19 +39,25 @@
 <Router {url}>
   <nav>
     <Link to="/">Home</Link>
-    <Link to="login">Login</Link>
-    <Link to="signup">Signup</Link>
-    <Link to="game">Game</Link>
-    <Link to="profile">Profile</Link>
-    <Link to="settings">Settings</Link>
-    <Link to="statistics">Statistics</Link>
-    <Link to="styleguide">Styleguide</Link>
+    {#if myToken}
+      <Link to="game">Game</Link>
+      <Link to="profile">Profile</Link>
+      <Link to="settings">Settings</Link>
+      <Link to="statistics">Statistics</Link>
+      <Link to="styleguide">Styleguide</Link>
+      <a href="#" on:click={logoutClickHandler}>Logout</a>
+    {:else}
+      <Link to="login">Login</Link>
+      <Link to="signup">Signup</Link>
+    {/if}
   </nav>
 
   <div>
     <Route path="/" component={Home} />
     {#if myToken}
-      <Route path="/game" component={Game} />
+      <Route path="game" component={Game} />
+      <Route path="game/:id" let:params; component={GameId} />
+      <Route path="game/create" component={GameCreate} />
       <Route path="profile/*" component={Profile} />
       <Route path="settings/*" component={Settings} />
       <Route path="statistics" component={Statistics} />
