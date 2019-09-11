@@ -30,15 +30,23 @@ export const signup = async ({ name, email, password }) => {
 
 export const createGame = async ({ forceAdding }) => {
   try {
-    return await requestService.post("/Game", forceAdding);
+    return await requestService.post("/Game", { forceAdding });
   } catch (e) {
     throw new Error(e);
   }
 };
 
-export const connectToGame = async ({ forceAdding }) => {
+export const connectToPublicGame = async ({ forceAdding }) => {
   try {
-    return await requestService.put("/Game", forceAdding);
+    return await requestService.put("/Game/Public", { forceAdding });
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+export const connectToPrivateGame = async ({ forceAdding, roomId }) => {
+  try {
+    return await requestService.put("/Game/Private", { forceAdding, roomId });
   } catch (e) {
     throw new Error(e);
   }

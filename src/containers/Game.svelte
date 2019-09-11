@@ -21,12 +21,14 @@
     unsubscribe();
   });
 
-  function connectToGameHandler() {
-    game.connectToGame({ forceAdding: false });
+  function connectToPublicGameHandler() {
+    game.connectToPublicGame({ forceAdding: false });
   }
 
-  function createGameHandler() {
-    game.createGame({ forceAdding: false });
+  function connectToPrivateGameHandler() {}
+
+  function createPrivateGameHandler() {
+    game.createPrivateGame({ forceAdding: false });
   }
 
   function notADogClickHandler() {
@@ -37,9 +39,12 @@
 <div class="container">
   <h1>Game!</h1>
 
-  {#if !$game.room}
-    <button on:click={connectToGameHandler}>Join game</button>
-    <button on:click={createGameHandler}>Create game</button>
+  {#if $game.room === undefined}
+    Not connected
+  {:else if $game.room === null}
+    <button on:click={connectToPublicGameHandler}>Join public room</button>
+    <!-- <button on:click={connectToPrivateGameHandler}>Join private room</button> -->
+    <!-- <button on:click={createPrivateGameHandler}>Create private room</button> -->
   {:else}
     {#if stateCode === GAME_STATES.WAITING_PLAYERS}
       <div>Waiting players</div>
@@ -58,5 +63,4 @@
       <div>End</div>
     {/if}
   {/if}
-
 </div>
