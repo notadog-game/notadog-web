@@ -14,7 +14,6 @@ export const GAME_STATES = {
 
 export class GameHub {
   static init() {
-
     connection = new signalR.HubConnectionBuilder()
       .withUrl(config.apiWsGameHost, {
         accessTokenFactory: async () => {
@@ -30,9 +29,9 @@ export class GameHub {
       console.log("OnConnect", data);
     });
 
-    connection.on("OnRoomUpdate", data => {
-      console.log("OnRoomUpdate", data);
-      game.updateRoom(data);
+    connection.on("OnRoomUpdate", room => {
+      console.log("OnRoomUpdate", room);
+      game.set(room);
     });
 
     connection.on("OnDisconnect", data => {
@@ -46,7 +45,6 @@ export class GameHub {
 
   static async connect() {
     try {
-      if (connection) return;
       this.init();
       await connection.start();
     } catch (err) {
@@ -66,6 +64,14 @@ export class GameHub {
   static async makeMove() {
     try {
       await connection.invoke("MakeMove");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async leaveGame() {
+    try {
+      await connection.invoke("LeaveGame");
     } catch (err) {
       console.log(err);
     }
