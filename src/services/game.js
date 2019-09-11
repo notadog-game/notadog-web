@@ -1,5 +1,5 @@
 import signalR from "@aspnet/signalr/dist/browser/signalr";
-import { game } from "../store/game";
+import { room, player } from "../store/game";
 import { config } from "../config.js";
 import { tokenService } from "./token";
 
@@ -25,13 +25,14 @@ export class GameHub {
       .configureLogging(signalR.LogLevel.Information)
       .build();
 
-    connection.on("OnConnect", data => {
-      console.log("OnConnect", data);
+    connection.on("OnConnect", value => {
+      console.log("OnConnect", value);
+      player.set(value);
     });
 
-    connection.on("OnRoomUpdate", room => {
-      console.log("OnRoomUpdate", room);
-      game.set(room);
+    connection.on("OnRoomUpdate", value => {
+      console.log("OnRoomUpdate", value);
+      room.set(value);
     });
 
     connection.on("OnDisconnect", data => {
@@ -56,6 +57,14 @@ export class GameHub {
     try {
       if (!connection) return;
       await connection.stop();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async startGame() {
+    try {
+      await connection.invoke("StartGame");
     } catch (err) {
       console.log(err);
     }

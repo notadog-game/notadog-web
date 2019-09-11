@@ -1,7 +1,9 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
+
   import { connectToPrivateGame } from "../services/api";
+  import { handleError } from "../services/errors";
 
   let isLoading = true;
   let roomId = "";
@@ -13,7 +15,7 @@
       await joinRoom();
     } catch (err) {
       isLoading = false;
-      console.log(err);
+      handleError(e);
     }
   });
 
@@ -42,7 +44,7 @@
   {#if isLoading}
     Loading
   {:else}
-    <button on:click={forceJoinRoomHandler()}>Force join</button>
+    <button class="btn" on:click={forceJoinRoomHandler()}>Force Join</button>
   {/if}
 
 </div>

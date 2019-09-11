@@ -1,7 +1,9 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
+
   import { createGame } from "../services/api";
+  import { handleError } from "../services/errors";
 
   let forceAdding = false;
 
@@ -11,7 +13,9 @@
     try {
       const room = await createGame({ forceAdding });
       navigate(`/game`, { replace: true });
-    } catch (err) {}
+    } catch (err) {
+      handleError(e);
+    }
   }
 </script>
 
@@ -23,5 +27,6 @@
       Force create
     </label>
   </div>
-  <button on:click={createRoomHandler}>Force create</button>
+
+  <button class="btn" on:click={createRoomHandler}>Create Room</button>
 </div>

@@ -2,13 +2,14 @@
   import { onMount, onDestroy, beforeUpdate } from "svelte";
   import { navigate } from "svelte-routing";
 
-  import { game } from "../store/game";
+  import { room, isRoomRoot, isWin } from "../store/game";
   import { GameHub, GAME_STATES } from "../services/game";
   import { connectToPublicGame } from "../services/api";
+  import { handleError } from "../services/errors";
 
   let stateCode;
 
-  const unsubscribe = game.subscribe(value => {
+  const unsubscribeRoom = room.subscribe(value => {
     if (!value) return;
     stateCode = value.stateCode;
   });
@@ -19,19 +20,23 @@
 
   onDestroy(() => {
     GameHub.disconnect();
-    unsubscribe();
+    unsubscribeRoom();
   });
 
   async function connectToPublicGameHandler() {
     try {
-      const room = await connectToPublicGame({ forceAdding: false });
+      await connectToPublicGame({ forceAdding: false });
     } catch (err) {
-      console.log(err);
+      handleError(e);
     }
   }
 
   function createPrivateGameHandler() {
     navigate("/game/create", { replace: true });
+  }
+
+  function startGameHandler() {
+    GameHub.startGame();
   }
 
   function notADogClickHandler() {
@@ -46,14 +51,22 @@
 <div class="container">
   <h1>Game!</h1>
 
-  {#if $game === undefined}
+  {#if $room === undefined}
     Not connected
-  {:else if $game === null}
-    <button on:click={connectToPublicGameHandler}>Join public room</button>
-    <button on:click={createPrivateGameHandler}>Create private room</button>
+  {:else if $room === null}
+    <button class="btn" on:click={connectToPublicGameHandler}>
+      Join public room
+    </button>
+    <button class="btn" on:click={createPrivateGameHandler}>
+      Create private room
+    </button>
   {:else}
     {#if stateCode === GAME_STATES.WAITING_PLAYERS}
       <div>Waiting players</div>
+
+      {#if $isRoomRoot}
+        <button class="btn" on:click={startGameHandler}>Start Game</button>
+      {/if}
     {/if}
 
     {#if stateCode === GAME_STATES.WAITING_START}
@@ -62,13 +75,19 @@
 
     {#if stateCode === GAME_STATES.PLAYING_STATE}
       <div>Playing</div>
-      <button on:click={notADogClickHandler}>NotADog</button>
+      <button class="btn" on:click={notADogClickHandler}>NotADog</button>
     {/if}
 
     {#if stateCode === GAME_STATES.END_STATE}
       <div>End</div>
+
+      {#if $isWin}
+        <div>You are not Dog! =)</div>
+      {:else}
+        <div>You are a Dog. =(</div>
+      {/if}
     {/if}
 
-    <button on:click={leaveGameHandler}>Leave room</button>
+    <button class="btn" on:click={leaveGameHandler}>Leave room</button>
   {/if}
 </div>
