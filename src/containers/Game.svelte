@@ -1,25 +1,36 @@
 <script>
   import { onMount, onDestroy, beforeUpdate } from "svelte";
   import { navigate } from "svelte-routing";
+  import ClipboardJS from "clipboard";
 
-  import { room, isRoomRoot, isWin } from "../store/game";
+  import { room, isRoomRoot, isWin, isPrivateRoom } from "../store/game";
   import { GameHub, GAME_STATES } from "../services/game";
   import { handleError } from "../services/errors";
 
   let stateCode;
+  let clipboard;
+  let roomLink;
 
   const unsubscribeRoom = room.subscribe(value => {
     if (!value) return;
     stateCode = value.stateCode;
+    roomLink = `${window.location.host}/game/${value.guid}`;
   });
 
   onMount(() => {
     GameHub.connect();
+
+    clipboard = new ClipboardJS(".copy", {
+      text: function(trigger) {
+        return trigger.getAttribute("aria-label");
+      }
+    });
   });
 
   onDestroy(() => {
     GameHub.disconnect();
     unsubscribeRoom();
+    clipboard.destroy();
   });
 
   async function joinGameHandler() {
@@ -60,9 +71,16 @@
     {#if stateCode === GAME_STATES.WAITING_PLAYERS}
       <div>Waiting players</div>
 
+      {#if $isPrivateRoom}
+        <button class="btn copy" aria-label={roomLink}>
+          Copy to clipboard
+        </button>
+      {/if}
+
       {#if $isRoomRoot}
         <button class="btn" on:click={startGameHandler}>Start Game</button>
       {/if}
+
       <button class="btn" on:click={leaveGameHandler}>Leave room</button>
     {/if}
 

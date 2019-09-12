@@ -36,3 +36,8 @@ export const isWin = derived(
     $room.stateCode === GAME_STATES.END_STATE &&
     $room.makedMovePlayers.some(p => p.id === $player.id)
 );
+
+export const isPrivateRoom = derived(
+  room,
+  $room => $room && $room.playersMaxCount === 0
+);
