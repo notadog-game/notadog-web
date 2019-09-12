@@ -3,9 +3,17 @@
   import { navigate } from "svelte-routing";
   import ClipboardJS from "clipboard";
 
-  import { room, isRoomRoot, isWin, isPrivateRoom } from "../store/game";
+  import {
+    player,
+    room,
+    isRoomRoot,
+    isWin,
+    isPrivateRoom
+  } from "../store/game";
   import { GameHub, GAME_STATES } from "../services/game";
   import { handleError } from "../services/errors";
+
+  import UserCard from "../components/UserCard.svelte";
 
   let stateCode;
   let clipboard;
@@ -58,9 +66,28 @@
   }
 </script>
 
+<style>
+  .header {
+    margin-bottom: 30px;
+  }
+  .user-card {
+    margin-bottom: 15px;
+  }
+</style>
+
 <div class="container">
   <h1>Game!</h1>
-  <button class="btn" on:click={refreshHandler}>Refresh</button>
+
+  <div class="header">
+
+    {#if $player !== null}
+      <div class="user-card">
+        <UserCard name={$player.name} points={$player.score} />
+      </div>
+    {/if}
+
+    <button class="btn" on:click={refreshHandler}>Refresh</button>
+  </div>
 
   {#if $room === undefined}
     Not connected
@@ -105,4 +132,5 @@
       {/if}
     {/if}
   {/if}
+
 </div>

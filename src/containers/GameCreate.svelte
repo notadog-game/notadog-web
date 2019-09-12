@@ -21,12 +21,11 @@
 
 <div class="container">
   <h1>Create game</h1>
-  <div>
-    <label>
-      <input type="checkbox" bind:checked={forceAdding} />
-      Force create
-    </label>
-  </div>
+
+  <label>
+    <input type="checkbox" bind:checked={forceAdding} />
+    Force create
+  </label>
 
   <button class="btn" on:click={createRoomHandler}>Create Room</button>
 </div>

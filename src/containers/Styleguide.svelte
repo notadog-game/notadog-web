@@ -1,5 +1,4 @@
 <script>
-  import Button from "../components/Button.svelte";
   import PlayButton from "../components/PlayButton.svelte";
   import ProfileButton from "../components/ProfileButton.svelte";
   import PlayIcon from "../components/icons/PlayIcon.svelte";
@@ -18,7 +17,7 @@
 <div class="container">
   <h1>Not a Dog!</h1>
   <h2>Not a Dog!</h2>
-  <Button on:buttonClick={testFunction} text={'NOT A DOG!!!'} />
+  <button on:click={testFunction}>NOT A DOG!!!</button>
   <input on:change={testFunction} placeholder={'Заполните инпут'} />
   <span>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo rerum
