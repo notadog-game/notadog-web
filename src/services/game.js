@@ -78,9 +78,9 @@ export class GameHub {
     }
   }
 
-  static async leaveGame() {
+  static async leaveRoom() {
     try {
-      await connection.invoke("LeaveGame");
+      await connection.invoke("LeaveRoom");
     } catch (err) {
       console.log(err);
     }

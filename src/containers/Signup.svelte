@@ -18,13 +18,6 @@
   }
 </script>
 
-<style>
-  .sign-up {
-    margin: 0 auto;
-    max-width: 500px;
-  }
-</style>
-
 <div class="container">
   <form class="form" on:submit|preventDefault={handleSubmit}>
     <h1>Not a Dog!</h1>

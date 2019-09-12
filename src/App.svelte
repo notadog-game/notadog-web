@@ -10,6 +10,7 @@
   import Game from "./containers/Game.svelte";
   import GameCreate from "./containers/GameCreate.svelte";
   import GameId from "./containers/GameId.svelte";
+  import GameJoin from "./containers/GameJoin.svelte";
   import Profile from "./containers/Profile.svelte";
   import Settings from "./containers/Settings.svelte";
   import Statistics from "./containers/Statistics.svelte";
@@ -58,6 +59,7 @@
       <Route path="game" component={Game} />
       <Route path="game/:id" let:params; component={GameId} />
       <Route path="game/create" component={GameCreate} />
+      <Route path="game/join" component={GameJoin} />
       <Route path="profile/*" component={Profile} />
       <Route path="settings/*" component={Settings} />
       <Route path="statistics" component={Statistics} />
