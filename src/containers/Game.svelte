@@ -43,6 +43,10 @@
     GameHub.makeMove();
   }
 
+  function refreshHandler() {
+    window.location.reload();
+  }
+
   function leaveGameHandler() {
     GameHub.leaveRoom();
   }
@@ -86,6 +90,8 @@
       {:else}
         <div>You are a Dog. =(</div>
       {/if}
+
+      <button class="btn" on:click={refreshHandler}>Finish</button>
     {/if}
 
     <button class="btn" on:click={leaveGameHandler}>Leave room</button>
