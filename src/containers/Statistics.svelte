@@ -23,5 +23,5 @@
     {/each}
   </ul>
 
-  <button class="btn" on:click={refreshClickHandler}>Refresh</button>
+  <button class="btn btn--basic" on:click={refreshClickHandler}>Refresh</button>
 </div>

@@ -21,5 +21,5 @@
 
 <div class="container">
   <h1>Join Game</h1>
-  <button class="btn" on:click={joinRoomHandler}>Join Room</button>
+  <button class="btn btn--basic" on:click={joinRoomHandler}>Join Room</button>
 </div>

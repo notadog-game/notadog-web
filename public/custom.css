@@ -41,6 +41,12 @@
 }
 
 .btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--basic {
   align-items: center;
   border-radius: 10px;
   background-color: var(--NAD_BLACK);
@@ -53,7 +59,8 @@
   justify-content: center;
   width: 100%;
 }
-.btn:hover {
+
+.btn--basic:hover {
   background-color: var(--NAD_WHITE);
   color: var(--NAD_BLACK);
   cursor: pointer;

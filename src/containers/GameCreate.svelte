@@ -27,5 +27,5 @@
     Force create
   </label>
 
-  <button class="btn" on:click={createRoomHandler}>Create Room</button>
+  <button class="btn btn--basic" on:click={createRoomHandler}>Create Room</button>
 </div>

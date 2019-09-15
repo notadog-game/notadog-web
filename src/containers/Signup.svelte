@@ -46,7 +46,7 @@
       placeholder="Repeat your password"
       bind:value={password1} />
 
-    <button class="btn form__btn">Signup</button>
+    <button class="btn btn--basic form__btn">Signup</button>
 
     <div>
       <span>Already onboard?</span>

@@ -34,7 +34,7 @@
       placeholder="Enter your password"
       bind:value={password} />
 
-    <button class="btn form__btn">Login</button>
+    <button class="btn btn--basic form__btn">Login</button>
 
     <div>
       <span>Want to signup?</span>

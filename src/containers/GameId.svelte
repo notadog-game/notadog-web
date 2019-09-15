@@ -44,7 +44,7 @@
   {#if isLoading}
     Loading
   {:else}
-    <button class="btn" on:click={forceJoinRoomHandler()}>Force Join</button>
+    <button class="btn btn--basic" on:click={forceJoinRoomHandler()}>Force Join</button>
   {/if}
 
 </div>
