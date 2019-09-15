@@ -14,6 +14,9 @@
   import { handleError } from "../services/errors";
 
   import UserCard from "../components/UserCard.svelte";
+  import PlayButton from "../components/PlayButton.svelte";
+  import PlayIcon from "../components/icons/PlayIcon.svelte";
+  import StartIcon from "../components/icons/StartIcon.svelte";
 
   let stateCode;
   let clipboard;
@@ -73,10 +76,17 @@
   .user-card {
     margin-bottom: 15px;
   }
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 3rem;
+  }
 </style>
 
 <div class="container">
-  <h1>Game!</h1>
+  <h1>Game</h1>
 
   <div class="header">
     <div class="user-card">
@@ -87,18 +97,17 @@
   </div>
 
   {#if $room === undefined}
-    Not connected
+    <div class="status">Not connected</div>
   {:else if $room === null}
+    <div class="status">Connected</div>
     <button class="btn" on:click={joinGameHandler}>Join public room</button>
     <button class="btn" on:click={createGameHandler}>Create room</button>
   {:else}
     {#if stateCode === GAME_STATES.WAITING_PLAYERS}
-      <div>Waiting players</div>
+      <div class="status">Waiting players</div>
 
       {#if $isPrivateRoom}
-        <button class="btn copy" aria-label={roomLink}>
-          Copy to clipboard
-        </button>
+        <button class="btn copy" aria-label={roomLink}>Copy game link</button>
       {/if}
 
       {#if $isRoomRoot}
@@ -109,23 +118,21 @@
     {/if}
 
     {#if stateCode === GAME_STATES.WAITING_START}
-      <div>Waiting start</div>
+      <div class="status">Waiting start</div>
       <button class="btn" on:click={leaveGameHandler}>Leave room</button>
     {/if}
 
     {#if stateCode === GAME_STATES.PLAYING_STATE}
-      <div>Playing</div>
+      <div class="status">Playing</div>
       <button class="btn" on:click={notADogClickHandler}>NotADog</button>
       <button class="btn" on:click={leaveGameHandler}>Leave room</button>
     {/if}
 
     {#if stateCode === GAME_STATES.END_STATE}
-      <div>End</div>
-
       {#if $isWin}
-        <div>You are not Dog! =)</div>
+        <div class="status">You are not Dog! =)</div>
       {:else}
-        <div>You are a Dog. =(</div>
+        <div class="status">You are a Dog. =(</div>
       {/if}
     {/if}
   {/if}
