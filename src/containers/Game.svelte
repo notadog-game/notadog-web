@@ -79,12 +79,9 @@
   <h1>Game!</h1>
 
   <div class="header">
-
-    {#if $player !== null}
-      <div class="user-card">
-        <UserCard name={$player.name} points={$player.score} />
-      </div>
-    {/if}
+    <div class="user-card">
+      <UserCard user={$player} />
+    </div>
 
     <button class="btn" on:click={refreshHandler}>Refresh</button>
   </div>
