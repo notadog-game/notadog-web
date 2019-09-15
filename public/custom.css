@@ -72,3 +72,13 @@
   background-color: rgba(0, 0, 0, 0.1) !important;
   color: transparent !important;
 }
+
+.flex-cc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noselect {
+  user-select: none;
+}

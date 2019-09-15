@@ -16,7 +16,6 @@
   import UserCard from "../components/UserCard.svelte";
   import PlayButton from "../components/PlayButton.svelte";
   import PlayIcon from "../components/icons/PlayIcon.svelte";
-  import StartIcon from "../components/icons/StartIcon.svelte";
 
   let stateCode;
   let clipboard;
@@ -77,15 +76,15 @@
     margin-bottom: 15px;
   }
   .status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 25px 0;
+  }
 
-    height: 3rem;
+  .play-button {
+    padding: 25px 0;
   }
 </style>
 
-<div class="container">
+<div class="container noselect">
   <h1>Game</h1>
 
   <div class="header">
@@ -97,14 +96,14 @@
   </div>
 
   {#if $room === undefined}
-    <div class="status">Not connected</div>
+    <div class="status flex-cc">Not connected</div>
   {:else if $room === null}
-    <div class="status">Connected</div>
+    <div class="status flex-cc">Connected</div>
     <button class="btn" on:click={joinGameHandler}>Join public room</button>
     <button class="btn" on:click={createGameHandler}>Create room</button>
   {:else}
     {#if stateCode === GAME_STATES.WAITING_PLAYERS}
-      <div class="status">Waiting players</div>
+      <div class="status flex-cc">Waiting players</div>
 
       {#if $isPrivateRoom}
         <button class="btn copy" aria-label={roomLink}>Copy game link</button>
@@ -118,23 +117,33 @@
     {/if}
 
     {#if stateCode === GAME_STATES.WAITING_START}
-      <div class="status">Waiting start</div>
+      <div class="status flex-cc">Waiting start</div>
+      <div class="play-button flex-cc">
+        <PlayButton disabled={true}>
+          <PlayIcon />
+        </PlayButton>
+      </div>
       <button class="btn" on:click={leaveGameHandler}>Leave room</button>
     {/if}
 
     {#if stateCode === GAME_STATES.PLAYING_STATE}
-      <div class="status">Playing</div>
-      <button class="btn" on:click={notADogClickHandler}>NotADog</button>
+      <div class="status flex-cc">Playing</div>
+
+      <div class="play-button flex-cc">
+        <PlayButton on:click={notADogClickHandler}>
+          <PlayIcon />
+        </PlayButton>
+      </div>
+
       <button class="btn" on:click={leaveGameHandler}>Leave room</button>
     {/if}
 
     {#if stateCode === GAME_STATES.END_STATE}
       {#if $isWin}
-        <div class="status">You are not Dog! =)</div>
+        <div class="status flex-cc">You are not Dog! =)</div>
       {:else}
-        <div class="status">You are a Dog. =(</div>
+        <div class="status flex-cc">You are a Dog. =(</div>
       {/if}
     {/if}
   {/if}
-
 </div>
