@@ -89,3 +89,19 @@
 .noselect {
   user-select: none;
 }
+
+.game-status {
+  padding: 25px 0;
+}
+
+.play-button {
+  padding: 25px 0;
+}
+
+.players-list {
+  height: 150px;
+  margin-bottom: 30px;
+  padding: 5px;
+  overflow: scroll;
+  border: 1px solid var(--NAD_SERVICE);
+}

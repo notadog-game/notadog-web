@@ -11,8 +11,6 @@
       ...new Array(marked).fill(true),
       ...new Array(common - marked).fill(false)
     ];
-
-    console.log(players);
   });
 </script>
 
@@ -22,8 +20,8 @@
   }
 
   li {
-    height: 5px;
-    width: 5px;
+    height: 10px;
+    width: 10px;
     margin: 2.5px;
     border-radius: 50%;
     border: 1px solid black;

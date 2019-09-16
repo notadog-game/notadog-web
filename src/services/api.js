@@ -28,18 +28,17 @@ export const signup = async ({ name, email, password }) => {
   }
 };
 
-export const createGame = async ({ forceAdding }) => {
+export const createGame = async () => {
   try {
-    return await requestService.post("/Game", { forceAdding });
+    return await requestService.post("/Game");
   } catch (e) {
     throw new Error(e);
   }
 };
 
-export const connectToPublicGame = async ({ forceAdding, playersCount }) => {
+export const connectToPublicGame = async ({ playersCount }) => {
   try {
     return await requestService.put("/Game/Public", {
-      forceAdding,
       playersCount,
     });
   } catch (e) {

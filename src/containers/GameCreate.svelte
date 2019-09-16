@@ -9,10 +9,10 @@
 
   async function createRoomHandler() {
     try {
-      const room = await createGame();
+      await createGame();
       navigate(`/game`, { replace: true });
     } catch (err) {
-      handleError(e);
+      handleError(err);
     }
   }
 </script>

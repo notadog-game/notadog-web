@@ -30,7 +30,7 @@ export const stepCode = derived(room, $room =>
 export const players = derived(room, $room => ($room ? $room.players : []));
 
 export const roomLink = derived(room, $room =>
-  $room ? `${window.location.path}/game/${$room.guid}` : ""
+  $room ? `${window.location.href}/${$room.guid}` : ""
 );
 
 export const isRoomRoot = derived(
@@ -49,5 +49,5 @@ export const isWin = derived(
 
 export const isPrivateRoom = derived(
   room,
-  $room => $room && $room.playersMaxCount === 0
+  $room => $room && $room.playersMaxCount === null
 );
