@@ -12,6 +12,8 @@ export const GAME_STATES = {
   END_STATE: "EndState",
 };
 
+export const PLAYERS_MAX_COUNT = 10;
+
 export class GameHub {
   static init() {
     connection = new signalR.HubConnectionBuilder()

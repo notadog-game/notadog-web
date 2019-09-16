@@ -4,63 +4,31 @@
   import ClipboardJS from "clipboard";
 
   import {
-    player,
     room,
+    player,
+    players,
+    stepCode,
+    roomLink,
     isRoomRoot,
     isWin,
     isPrivateRoom
   } from "../store/game";
+
   import { GameHub, GAME_STATES } from "../services/game";
   import { handleError } from "../services/errors";
 
   import UserCard from "../components/UserCard.svelte";
   import PlayersList from "../components/PlayersList.svelte";
   import PlayButton from "../components/PlayButton.svelte";
+  import PlayProgress from "../components/PlayProgress.svelte";
 
   import PlayIcon from "../components/icons/PlayIcon.svelte";
   import RefreshIcon from "../components/icons/RefreshIcon.svelte";
 
-  let stateCode = null;
   let clipboard = null;
-  let roomLink = null;
-  let players = [];
-
-  const unsubscribeRoom = room.subscribe(value => {
-    if (!value) return;
-
-    stateCode = value.stateCode;
-    roomLink = `${window.location.host}/game/${value.guid}`;
-
-    const _players = [
-      { id: 1, name: "user1" },
-      { id: 2, name: "user2" },
-      { id: 3, name: "user3" },
-      { id: 4, name: "user4" },
-      { id: 5, name: "user5" },
-      { id: 6, name: "user6" },
-      { id: 7, name: "user7" }
-    ];
-
-    const _makedMovePlayers = [
-      { id: 1, name: "user1" },
-      { id: 3, name: "user3" },
-      { id: 5, name: "user5" },
-      { id: 7, name: "user7" }
-    ];
-
-    players = value.players
-      .map(originalPlayer => ({
-        ...originalPlayer,
-        isMakedMove: !!value.makedMovePlayers.find(
-          makedMovePlayer => makedMovePlayer.id === originalPlayer.id
-        )
-      }))
-      .sort((p1, p2) => p1.isMakedMove - p2.isMakedMove);
-  });
 
   onMount(() => {
     GameHub.connect();
-
     clipboard = new ClipboardJS(".copy", {
       text: function(trigger) {
         return trigger.getAttribute("aria-label");
@@ -70,8 +38,8 @@
 
   onDestroy(() => {
     GameHub.disconnect();
-    unsubscribeRoom();
     clipboard.destroy();
+    room.reset();
   });
 
   async function joinGameHandler() {
@@ -96,6 +64,17 @@
 
   function leaveGameHandler() {
     GameHub.leaveRoom();
+  }
+
+  function getEndStatePlayers(room) {
+    return room.players
+      .map(originalPlayer => ({
+        ...originalPlayer,
+        isMakedMove: !!room.makedMovePlayers.find(
+          makedMovePlayer => makedMovePlayer.id === originalPlayer.id
+        )
+      }))
+      .sort((p1, p2) => p2.isMakedMove - p1.isMakedMove);
   }
 </script>
 
@@ -160,25 +139,15 @@
       Create room
     </button>
   {:else}
-    {#if stateCode === GAME_STATES.WAITING_PLAYERS}
+    {#if $stepCode === GAME_STATES.WAITING_PLAYERS}
       <div class="status flex-cc">Waiting players</div>
-    {/if}
 
-    {#if stateCode === GAME_STATES.WAITING_START}
-      <div class="status flex-cc">Waiting start</div>
-    {/if}
+      <div class="players-list">
+        <PlayersList users={$room.players} />
+      </div>
 
-    {#if stateCode === GAME_STATES.PLAYING_STATE}
-      <div class="status flex-cc">Playing</div>
-    {/if}
-
-    <div class="players-list">
-      <PlayersList users={players} />
-    </div>
-
-    {#if stateCode === GAME_STATES.WAITING_PLAYERS}
       {#if $isPrivateRoom}
-        <button class="btn btn--basic copy" aria-label={roomLink}>
+        <button class="btn btn--basic copy" aria-label={$roomLink}>
           Copy game link
         </button>
       {/if}
@@ -194,7 +163,13 @@
       </button>
     {/if}
 
-    {#if stateCode === GAME_STATES.WAITING_START}
+    {#if $stepCode === GAME_STATES.WAITING_START}
+      <div class="status flex-cc">Waiting start</div>
+
+      <PlayProgress
+        common={$room.players.length}
+        marked={$room.makedMovePlayers.length} />
+
       <div class="play-button flex-cc">
         <PlayButton disabled={true}>
           <PlayIcon />
@@ -205,7 +180,13 @@
       </button>
     {/if}
 
-    {#if stateCode === GAME_STATES.PLAYING_STATE}
+    {#if $stepCode === GAME_STATES.PLAYING_STATE}
+      <div class="status flex-cc">Playing</div>
+
+      <PlayProgress
+        common={$room.players.length}
+        marked={$room.makedMovePlayers.length} />
+
       <div class="play-button flex-cc">
         <PlayButton on:click={notADogClickHandler}>
           <PlayIcon />
@@ -217,7 +198,10 @@
       </button>
     {/if}
 
-    {#if stateCode === GAME_STATES.END_STATE}
+    {#if $stepCode === GAME_STATES.END_STATE}
+      <div class="players-list">
+        <PlayersList users={getEndStatePlayers($room)} />
+      </div>
       {#if $isWin}
         <div class="status flex-cc">You are not Dog! =)</div>
       {:else}

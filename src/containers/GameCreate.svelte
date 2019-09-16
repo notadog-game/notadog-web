@@ -5,13 +5,11 @@
   import { createGame } from "../services/api";
   import { handleError } from "../services/errors";
 
-  let forceAdding = false;
-
   onDestroy(() => {});
 
   async function createRoomHandler() {
     try {
-      const room = await createGame({ forceAdding });
+      const room = await createGame();
       navigate(`/game`, { replace: true });
     } catch (err) {
       handleError(e);
@@ -21,11 +19,5 @@
 
 <div class="container">
   <h1>Create game</h1>
-
-  <label>
-    <input type="checkbox" bind:checked={forceAdding} />
-    Force create
-  </label>
-
-  <button class="btn btn--basic" on:click={createRoomHandler}>Create Room</button>
+  <button class="btn btn--basic" on:click={createRoomHandler}>Create</button>
 </div>

@@ -23,6 +23,16 @@ function createRoomStore() {
 }
 export const room = createRoomStore();
 
+export const stepCode = derived(room, $room =>
+  $room ? $room.stateCode : null
+);
+
+export const players = derived(room, $room => ($room ? $room.players : []));
+
+export const roomLink = derived(room, $room =>
+  $room ? `${window.location.path}/game/${$room.guid}` : ""
+);
+
 export const isRoomRoot = derived(
   [room, player],
   ([$room, $player]) => $room && $player && $room.rootId === $player.id

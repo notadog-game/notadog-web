@@ -4,14 +4,17 @@
 
   import { connectToPublicGame } from "../services/api";
   import { handleError } from "../services/errors";
+  import { PLAYERS_MAX_COUNT } from "../services/game";
 
-  let forceAdding = false;
+  import RangeSelect from "../components/RangeSelect.svelte";
+
+  let playersMaxCount = 0;
 
   onDestroy(() => {});
 
   async function joinRoomHandler() {
     try {
-      await connectToPublicGame({ forceAdding: false });
+      await connectToPublicGame({ playersMaxCount });
       navigate(`/game`, { replace: true });
     } catch (err) {
       handleError(e);
@@ -21,5 +24,6 @@
 
 <div class="container">
   <h1>Join Game</h1>
-  <button class="btn btn--basic" on:click={joinRoomHandler}>Join Room</button>
+  <RangeSelect bind:value={playersMaxCount} min={0} max={PLAYERS_MAX_COUNT} />
+  <button class="btn btn--basic" on:click={joinRoomHandler}>Join</button>
 </div>

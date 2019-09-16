@@ -36,9 +36,12 @@ export const createGame = async ({ forceAdding }) => {
   }
 };
 
-export const connectToPublicGame = async ({ forceAdding }) => {
+export const connectToPublicGame = async ({ forceAdding, playersCount }) => {
   try {
-    return await requestService.put("/Game/Public", { forceAdding });
+    return await requestService.put("/Game/Public", {
+      forceAdding,
+      playersCount,
+    });
   } catch (e) {
     throw new Error(e);
   }
