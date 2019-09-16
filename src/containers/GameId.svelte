@@ -1,9 +1,12 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
+
   import { connectToPrivateGame } from "../services/api";
+  import { handleError } from "../services/errors";
 
   let isLoading = true;
+  let isError = false;
   let roomId = "";
 
   onMount(async () => {
@@ -13,21 +16,27 @@
       await joinRoom();
     } catch (err) {
       isLoading = false;
-      console.log(err);
+      handleError(e);
     }
   });
 
-  onDestroy(() => {});
+  onDestroy(() => {
+    isLoading = true;
+    isError = false;
+    roomId = "";
+  });
 
   async function joinRoom(forceAdding = false) {
     isLoading = true;
+    isError = false;
 
     try {
       await connectToPrivateGame({ roomId, forceAdding });
-      navigate(`/game`, { replace: true });
       isLoading = false;
+      navigate(`/game`, { replace: true });
     } catch (err) {
       isLoading = false;
+      isError = true;
     }
   }
 
@@ -42,7 +51,9 @@
   {#if isLoading}
     Loading
   {:else}
-    <button on:click={forceJoinRoomHandler()}>Force join</button>
+    <button class="btn btn--basic" on:click={forceJoinRoomHandler()}>
+      Force Join
+    </button>
   {/if}
 
 </div>

@@ -1,17 +1,15 @@
 <script>
-  import { onMount, onDestroy, beforeUpdate } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
-
-  import { game } from "../store/game";
+  import { room, player, stepCode } from "../store/game";
   import { GameHub, GAME_STATES } from "../services/game";
-  import { connectToPublicGame } from "../services/api";
-
-  let stateCode;
-
-  const unsubscribe = game.subscribe(value => {
-    if (!value) return;
-    stateCode = value.stateCode;
-  });
+  import GameWaitingPlayersState from "./GameWaitingPlayersState.svelte";
+  import GameWaitingStartState from "./GameWaitingStartState.svelte";
+  import GamePlayingState from "./GamePlayingState.svelte";
+  import GameEndState from "./GameEndState.svelte";
+  import UserCard from "../components/UserCard.svelte";
+  import PlayProgress from "../components/PlayProgress.svelte";
+  import RefreshIcon from "../components/icons/RefreshIcon.svelte";
 
   onMount(() => {
     GameHub.connect();
@@ -19,23 +17,19 @@
 
   onDestroy(() => {
     GameHub.disconnect();
-    unsubscribe();
+    room.reset();
   });
 
-  async function connectToPublicGameHandler() {
-    try {
-      const room = await connectToPublicGame({ forceAdding: false });
-    } catch (err) {
-      console.log(err);
-    }
+  async function joinGameHandler() {
+    navigate("/game/join", { replace: true });
   }
 
-  function createPrivateGameHandler() {
+  function createGameHandler() {
     navigate("/game/create", { replace: true });
   }
 
-  function notADogClickHandler() {
-    GameHub.makeMove();
+  function refreshHandler() {
+    window.location.reload();
   }
 
   function leaveGameHandler() {
@@ -43,32 +37,93 @@
   }
 </script>
 
-<div class="container">
-  <h1>Game!</h1>
+<style>
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-  {#if $game === undefined}
-    Not connected
-  {:else if $game === null}
-    <button on:click={connectToPublicGameHandler}>Join public room</button>
-    <button on:click={createPrivateGameHandler}>Create private room</button>
+  .refresh {
+    justify-self: flex-end;
+    margin: 0;
+    transition: transform 1s;
+  }
+  /* TODO: implement animation */
+  .refresh:active {
+    /* background: none;
+    transform: rotateZ(180deg); */
+  }
+
+  .user-card {
+    margin-bottom: 15px;
+  }
+</style>
+
+<div class="container noselect">
+  <div class="header">
+    <h1>Game</h1>
+    <button class="refresh btn flex-cc" on:click={refreshHandler}>
+      <RefreshIcon />
+    </button>
+  </div>
+
+  {#if $room === undefined}
+    <div class="game-status flex-cc">Connecting...</div>
+  {:else if $room === null}
+    <div class="user-card">
+      <UserCard user={$player} />
+    </div>
+    <div class="game-status flex-cc">Connected</div>
+    <button class="btn btn--basic" on:click={joinGameHandler}>
+      Join public room
+    </button>
+    <button class="btn btn--basic" on:click={createGameHandler}>
+      Create room
+    </button>
   {:else}
-    {#if stateCode === GAME_STATES.WAITING_PLAYERS}
-      <div>Waiting players</div>
+    {#if $stepCode === GAME_STATES.WAITING_PLAYERS}
+      <GameWaitingPlayersState>
+        <span slot="leaveButton">
+          <button class="btn btn--basic" on:click={leaveGameHandler}>
+            Leave room
+          </button>
+        </span>
+      </GameWaitingPlayersState>
     {/if}
 
-    {#if stateCode === GAME_STATES.WAITING_START}
-      <div>Waiting start</div>
+    {#if $stepCode === GAME_STATES.WAITING_START}
+      <GameWaitingStartState>
+        <span slot="playProgress">
+          <PlayProgress
+            common={$room.players.length}
+            marked={$room.makedMovePlayers.length} />
+        </span>
+        <span slot="leaveButton">
+          <button class="btn btn--basic" on:click={leaveGameHandler}>
+            Leave room
+          </button>
+        </span>
+      </GameWaitingStartState>
     {/if}
 
-    {#if stateCode === GAME_STATES.PLAYING_STATE}
-      <div>Playing</div>
-      <button on:click={notADogClickHandler}>NotADog</button>
+    {#if $stepCode === GAME_STATES.PLAYING_STATE}
+      <GamePlayingState>
+        <span slot="playProgress">
+          <PlayProgress
+            common={$room.players.length}
+            marked={$room.makedMovePlayers.length} />
+        </span>
+        <span slot="leaveButton">
+          <button class="btn btn--basic" on:click={leaveGameHandler}>
+            Leave room
+          </button>
+        </span>
+      </GamePlayingState>
     {/if}
 
-    {#if stateCode === GAME_STATES.END_STATE}
-      <div>End</div>
+    {#if $stepCode === GAME_STATES.END_STATE}
+      <GameEndState />
     {/if}
-
-    <button on:click={leaveGameHandler}>Leave room</button>
   {/if}
 </div>

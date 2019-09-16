@@ -1,5 +1,12 @@
 <script>
+  import { createEventDispatcher } from "svelte";
 
+  const dispatch = createEventDispatcher();
+  export let disabled = false;
+
+  function onClickHandler() {
+    dispatch("click");
+  }
 </script>
 
 <style>
@@ -19,9 +26,13 @@
     fill: var(--NAD_WHITE);
     stroke: var(--NAD_BLACK);
   }
-  
+
+  .disabled.play-btn {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 </style>
 
-<div class="play-btn">
+<div class="play-btn {disabled ? 'disabled' : ''}" on:click={onClickHandler}>
   <slot />
 </div>

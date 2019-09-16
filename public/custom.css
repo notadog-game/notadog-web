@@ -10,6 +10,11 @@
   }
 }
 
+.form {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
 .input {
   border: none;
   border-bottom: 1px solid var(--NAD_MILK);
@@ -25,4 +30,78 @@
 }
 .input::placeholder {
   color: var(--NAD_GREY);
+}
+
+.form__input {
+  margin-top: 5px;
+}
+
+.form__btn {
+  margin: 34px 0 77px;
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--basic {
+  align-items: center;
+  border-radius: 10px;
+  background-color: var(--NAD_BLACK);
+  border: 1px solid var(--NAD_BLACK);
+  color: var(--NAD_WHITE);
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  height: 60px;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn--basic:hover {
+  background-color: var(--NAD_WHITE);
+  color: var(--NAD_BLACK);
+  cursor: pointer;
+}
+
+.card {
+  padding: 15px;
+  border: 1px solid rgb(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.stencil {
+  display: block;
+  width: 100%;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: transparent !important;
+}
+
+.flex-cc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noselect {
+  user-select: none;
+}
+
+.game-status {
+  padding: 25px 0;
+}
+
+.play-button {
+  padding: 25px 0;
+}
+
+.players-list {
+  height: 150px;
+  margin-bottom: 30px;
+  padding: 5px;
+  overflow: scroll;
+  border: 1px solid var(--NAD_SERVICE);
 }

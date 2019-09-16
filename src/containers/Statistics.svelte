@@ -2,8 +2,6 @@
   import { users } from "../store/users";
   import { onMount, onDestroy } from "svelte";
 
-  import Button from "../components/Button.svelte";
-
   function refreshClickHandler() {
     users.load();
   }
@@ -25,5 +23,5 @@
     {/each}
   </ul>
 
-  <Button on:buttonClick={refreshClickHandler} text={'Refresh'} />
+  <button class="btn btn--basic" on:click={refreshClickHandler}>Refresh</button>
 </div>

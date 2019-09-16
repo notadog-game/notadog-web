@@ -1,5 +1,5 @@
 import signalR from "@aspnet/signalr/dist/browser/signalr";
-import { game } from "../store/game";
+import { room, player } from "../store/game";
 import { config } from "../config.js";
 import { tokenService } from "./token";
 
@@ -11,6 +11,8 @@ export const GAME_STATES = {
   PLAYING_STATE: "PlayingState",
   END_STATE: "EndState",
 };
+
+export const PLAYERS_MAX_COUNT = 10;
 
 export class GameHub {
   static init() {
@@ -25,13 +27,14 @@ export class GameHub {
       .configureLogging(signalR.LogLevel.Information)
       .build();
 
-    connection.on("OnConnect", data => {
-      console.log("OnConnect", data);
+    connection.on("OnConnect", value => {
+      console.log("OnConnect", value);
+      player.set(value);
     });
 
-    connection.on("OnRoomUpdate", room => {
-      console.log("OnRoomUpdate", room);
-      game.set(room);
+    connection.on("OnRoomUpdate", value => {
+      console.log("OnRoomUpdate", value);
+      room.set(value);
     });
 
     connection.on("OnDisconnect", data => {
@@ -61,6 +64,14 @@ export class GameHub {
     }
   }
 
+  static async startGame() {
+    try {
+      await connection.invoke("StartGame");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   static async makeMove() {
     try {
       await connection.invoke("MakeMove");
@@ -69,9 +80,9 @@ export class GameHub {
     }
   }
 
-  static async leaveGame() {
+  static async leaveRoom() {
     try {
-      await connection.invoke("LeaveGame");
+      await connection.invoke("LeaveRoom");
     } catch (err) {
       console.log(err);
     }

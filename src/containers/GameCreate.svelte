@@ -1,27 +1,23 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
-  import { createGame } from "../services/api";
 
-  let forceAdding = false;
+  import { createGame } from "../services/api";
+  import { handleError } from "../services/errors";
 
   onDestroy(() => {});
 
   async function createRoomHandler() {
     try {
-      const room = await createGame({ forceAdding });
+      await createGame();
       navigate(`/game`, { replace: true });
-    } catch (err) {}
+    } catch (err) {
+      handleError(err);
+    }
   }
 </script>
 
 <div class="container">
   <h1>Create game</h1>
-  <div>
-    <label>
-      <input type="checkbox" bind:checked={forceAdding} />
-      Force create
-    </label>
-  </div>
-  <button on:click={createRoomHandler}>Force create</button>
+  <button class="btn btn--basic" on:click={createRoomHandler}>Create</button>
 </div>
