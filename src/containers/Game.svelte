@@ -29,7 +29,7 @@
   }
 
   function refreshHandler() {
-    window.location.reload();
+    GameHub.refresh();
   }
 
   function leaveGameHandler() {
