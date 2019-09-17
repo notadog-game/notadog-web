@@ -9,7 +9,7 @@
   import GameEndState from "./GameEndState.svelte";
   import UserCard from "../components/UserCard.svelte";
   import PlayProgress from "../components/PlayProgress.svelte";
-  import RefreshIcon from "../components/icons/RefreshIcon.svelte";
+  import RefreshButton from "../components/RefreshButton.svelte";
 
   onMount(() => {
     GameHub.connect();
@@ -44,17 +44,6 @@
     justify-content: center;
   }
 
-  .refresh {
-    justify-self: flex-end;
-    margin: 0;
-    transition: transform 1s;
-  }
-  /* TODO: implement animation */
-  .refresh:active {
-    /* background: none;
-    transform: rotateZ(180deg); */
-  }
-
   .user-card {
     margin-bottom: 15px;
   }
@@ -63,9 +52,7 @@
 <div class="container noselect">
   <div class="header">
     <h1>Game</h1>
-    <button class="refresh btn flex-cc" on:click={refreshHandler}>
-      <RefreshIcon />
-    </button>
+    <RefreshButton on:click={refreshHandler} />
   </div>
 
   {#if $room === undefined}
