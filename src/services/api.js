@@ -36,11 +36,9 @@ export const createGame = async () => {
   }
 };
 
-export const connectToPublicGame = async ({ playersCount }) => {
+export const connectToPublicGame = async ({ playersMaxCount }) => {
   try {
-    return await requestService.put("/Game/Public", {
-      playersCount,
-    });
+    return await requestService.put("/Game/Public", { playersMaxCount });
   } catch (e) {
     throw new Error(e);
   }

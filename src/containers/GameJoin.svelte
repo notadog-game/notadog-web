@@ -17,7 +17,7 @@
       await connectToPublicGame({ playersMaxCount });
       navigate(`/game`, { replace: true });
     } catch (err) {
-      handleError(e);
+      handleError(err);
     }
   }
 </script>
