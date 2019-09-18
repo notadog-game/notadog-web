@@ -88,6 +88,14 @@ export class GameHub {
     }
   }
 
+  static async playAgain() {
+    try {
+      await connection.invoke("PlayAgain");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   static async leaveRoom() {
     try {
       await connection.invoke("LeaveRoom");
