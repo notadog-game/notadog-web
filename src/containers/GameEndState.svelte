@@ -12,11 +12,9 @@
 
   function getEndStatePlayers(room) {
     return room.players
-      .map(originalPlayer => ({
-        ...originalPlayer,
-        isMakedMove: !!room.makedMovePlayers.find(
-          makedMovePlayer => makedMovePlayer.id === originalPlayer.id
-        )
+      .map(player => ({
+        ...player,
+        isMakedMove: !!room.makedMovePlayerIds.find(id => id === player.id)
       }))
       .sort((p1, p2) => p2.isMakedMove - p1.isMakedMove);
   }
@@ -31,3 +29,5 @@
 <div class="players-list">
   <PlayersList users={getEndStatePlayers($room)} />
 </div>
+
+<slot name="leaveButton" />

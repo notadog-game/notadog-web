@@ -84,7 +84,7 @@
         <span slot="playProgress">
           <PlayProgress
             common={$room.players.length}
-            marked={$room.makedMovePlayers.length} />
+            marked={$room.makedMovePlayerIds.length} />
         </span>
         <span slot="leaveButton">
           <button class="btn btn--basic" on:click={leaveGameHandler}>
@@ -99,7 +99,7 @@
         <span slot="playProgress">
           <PlayProgress
             common={$room.players.length}
-            marked={$room.makedMovePlayers.length} />
+            marked={$room.makedMovePlayerIds.length} />
         </span>
         <span slot="leaveButton">
           <button class="btn btn--basic" on:click={leaveGameHandler}>
@@ -110,7 +110,13 @@
     {/if}
 
     {#if $stepCode === GAME_STATES.END_STATE}
-      <GameEndState />
+      <GameEndState>
+        <span slot="leaveButton">
+          <button class="btn btn--basic" on:click={leaveGameHandler}>
+            Leave room
+          </button>
+        </span>
+      </GameEndState>
     {/if}
   {/if}
 </div>
