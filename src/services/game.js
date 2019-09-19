@@ -72,6 +72,14 @@ export class GameHub {
     }
   }
 
+  static async replay() {
+    try {
+      await connection.invoke("Replay");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   static async startGame() {
     try {
       await connection.invoke("StartGame");
