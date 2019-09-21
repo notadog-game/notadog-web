@@ -8,7 +8,7 @@
 
   import RangeSelect from "../components/RangeSelect.svelte";
 
-  let playersMaxCount = 0;
+  let playersMaxCount = 2;
 
   onDestroy(() => {});
 
@@ -24,6 +24,6 @@
 
 <div class="container">
   <h1>Join Game</h1>
-  <RangeSelect bind:value={playersMaxCount} min={0} max={PLAYERS_MAX_COUNT} />
+  <RangeSelect bind:value={playersMaxCount} min={2} max={PLAYERS_MAX_COUNT} />
   <button class="btn btn--basic" on:click={joinRoomHandler}>Join</button>
 </div>
