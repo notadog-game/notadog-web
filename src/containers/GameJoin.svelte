@@ -8,7 +8,7 @@
 
   import RangeSelect from "../components/RangeSelect.svelte";
 
-  let playersMaxCount = 0;
+  let playersMaxCount = PLAYERS_MIN_COUNT;
 
   onDestroy(() => {});
 
