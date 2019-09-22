@@ -2,7 +2,8 @@
   import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
   import { room, player, stepCode } from "../store/game";
-  import { GameHub, GAME_STATES } from "../services/game";
+  import { GameHub } from "../services/game";
+  import { GAME_STATES } from "../constants/game";
   import GameWaitingPlayersState from "./GameWaitingPlayersState.svelte";
   import GameWaitingStartState from "./GameWaitingStartState.svelte";
   import GamePlayingState from "./GamePlayingState.svelte";

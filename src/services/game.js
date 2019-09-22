@@ -5,15 +5,6 @@ import { tokenService } from "./token";
 
 let connection;
 
-export const GAME_STATES = {
-  WAITING_PLAYERS: "WaitingPlayersState",
-  WAITING_START: "WaitingStartState",
-  PLAYING_STATE: "PlayingState",
-  END_STATE: "EndState",
-};
-
-export const PLAYERS_MAX_COUNT = 10;
-
 export class GameHub {
   static init() {
     connection = new signalR.HubConnectionBuilder()
