@@ -1,5 +1,5 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Link } from "svelte-routing";
   import { tokenService } from "../services/token";
   import { login } from "../services/api";
   import { handleError } from "../services/errors";

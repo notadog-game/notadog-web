@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy, beforeUpdate } from "svelte";
+  import { beforeUpdate } from "svelte";
 
   export let common = 0;
   export let marked = 0;

@@ -1,14 +1,7 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import ClipboardJS from "clipboard";
-  import {
-    room,
-    player,
-    players,
-    roomLink,
-    isRoomRoot,
-    isPrivateRoom
-  } from "../store/game";
+  import { players, roomLink, isRoomRoot, isPrivateRoom } from "../store/game";
   import { GameHub } from "../services/game";
   import PlayersList from "../components/PlayersList.svelte";
 

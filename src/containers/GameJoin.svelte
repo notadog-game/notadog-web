@@ -1,5 +1,4 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
 
   import { connectToPublicGame } from "../services/api";
@@ -9,8 +8,6 @@
   import RangeSelect from "../components/RangeSelect.svelte";
 
   let playersMaxCount = 2;
-
-  onDestroy(() => {});
 
   async function joinRoomHandler() {
     try {

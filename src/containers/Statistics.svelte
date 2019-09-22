@@ -1,6 +1,6 @@
 <script>
   import { users } from "../store/users";
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
 
   function refreshClickHandler() {
     users.load();

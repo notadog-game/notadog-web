@@ -1,8 +1,5 @@
 <script>
-  import { room } from "../store/game";
-
   import PlayButton from "../components/PlayButton.svelte";
-  import PlayProgress from "../components/PlayProgress.svelte";
   import PlayIcon from "../components/icons/PlayIcon.svelte";
 </script>
 
