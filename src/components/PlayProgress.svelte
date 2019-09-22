@@ -9,7 +9,7 @@
   beforeUpdate(() => {
     players = [
       ...new Array(marked).fill(true),
-      ...new Array(common - marked).fill(false),
+      ...new Array(common - marked).fill(false)
     ];
   });
 </script>
