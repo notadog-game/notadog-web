@@ -1,19 +1,13 @@
 <script>
-  import { users } from "../store/users";
   import { onMount, onDestroy } from "svelte";
-  import { getUsers } from "../services/api";
+  import { users, loadUsersAction } from "../store/users";
 
   async function refreshClickHandler() {
-    try {
-      const items = await getUsers();
-      users.set(items);
-    } catch (e) {
-      globalErrorsHandler(e);
-    }
+    loadUsersAction();
   }
 
   onMount(() => {
-    if (!$users.length) users.load();
+    if (!$users.length) loadUsersAction();
   });
 </script>
 
