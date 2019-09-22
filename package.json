@@ -9,12 +9,15 @@
     "start:dev": "sirv public --single --dev --port 8080",
     "test": "jest",
     "lint": "npm run lint:js && npm run lint:svelte",
-    "lint:js": "npx eslint --fix src",
-    "lint:svelte": "npx eslint src --ext .svelte -c .eslintrc.svelte.json --fix"
+    "lint:fix": "npm run lint:js:fix && npm run lint:svelte:fix",
+    "lint:js": "npx eslint src",
+    "lint:js:fix": "npx eslint src --fix",
+    "lint:svelte": "npx eslint src --ext .svelte -c .eslintrc.svelte.json",
+    "lint:svelte:fix": "npx eslint src --ext .svelte -c .eslintrc.svelte.json --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
+      "pre-commit": "npm run lint:fix",
       "pre-push": "npm run test"
     }
   },
