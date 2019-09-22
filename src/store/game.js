@@ -1,5 +1,5 @@
 import { writable, derived } from "svelte/store";
-import { GAME_STATES } from "../services/game";
+import { GAME_STATES } from "../constants/game";
 
 function createPlayerStore() {
   const { subscribe, set } = writable(null);
