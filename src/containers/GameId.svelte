@@ -6,7 +6,6 @@
   import { globalErrorsHandler } from "../services/errors";
 
   let isLoading = true;
-  let isError = false;
   let roomId = "";
 
   onMount(async () => {
@@ -16,19 +15,17 @@
       await joinRoom();
     } catch (err) {
       isLoading = false;
-      globalErrorsHandler(e);
+      globalErrorsHandler(err);
     }
   });
 
   onDestroy(() => {
     isLoading = true;
-    isError = false;
     roomId = "";
   });
 
   async function joinRoom(forceAdding = false) {
     isLoading = true;
-    isError = false;
 
     try {
       await connectToPrivateGame({ roomId, forceAdding });
@@ -36,7 +33,7 @@
       navigate(`/game`, { replace: true });
     } catch (err) {
       isLoading = false;
-      isError = true;
+      globalErrorsHandler(err);
     }
   }
 

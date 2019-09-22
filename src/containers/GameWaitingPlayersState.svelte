@@ -1,15 +1,8 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import ClipboardJS from "clipboard";
-  import {
-    room,
-    player,
-    players,
-    roomLink,
-    isRoomRoot,
-    isPrivateRoom
-  } from "../store/game";
-  import { GameHub } from "../hubs/game";
+  import { players, roomLink, isRoomRoot, isPrivateRoom } from "../store/game";
+  import { GameHub } from "../services/game";
   import PlayersList from "../components/PlayersList.svelte";
 
   let clipboard = "";
@@ -18,7 +11,7 @@
     clipboard = new ClipboardJS(".copy", {
       text: function(trigger) {
         return trigger.getAttribute("aria-label");
-      }
+      },
     });
   });
 
