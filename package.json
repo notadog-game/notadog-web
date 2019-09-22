@@ -8,7 +8,8 @@
     "start": "node server.js",
     "start:dev": "sirv public --single --dev --port 8080",
     "test": "jest",
-    "lint": "npx eslint --fix src",
+    "lint": "npm run lint:js && npm run lint:svelte",
+    "lint:js": "npx eslint --fix src",
     "lint:svelte": "npx eslint src --ext .svelte -c .eslintrc.svelte.json --fix"
   },
   "husky": {
