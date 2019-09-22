@@ -9,5 +9,5 @@ export const tokenService = {
   },
   remove: function() {
     localStorage.removeItem(key);
-  }
+  },
 };
