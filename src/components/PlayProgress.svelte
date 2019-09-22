@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy, beforeUpdate } from "svelte";
+  import { beforeUpdate } from "svelte";
 
   export let common = 0;
   export let marked = 0;
@@ -9,7 +9,7 @@
   beforeUpdate(() => {
     players = [
       ...new Array(marked).fill(true),
-      ...new Array(common - marked).fill(false)
+      ...new Array(common - marked).fill(false),
     ];
   });
 </script>

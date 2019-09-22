@@ -1,11 +1,8 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
 
   import { createGame } from "../services/api";
   import { handleError } from "../services/errors";
-
-  onDestroy(() => {});
 
   async function createRoomHandler() {
     try {

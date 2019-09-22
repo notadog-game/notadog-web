@@ -1,7 +1,8 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Link } from "svelte-routing";
   import { signup } from "../services/api";
   import { handleError } from "../services/errors";
+  import { tokenService } from "../services/token";
 
   let name = "";
   let email = "";

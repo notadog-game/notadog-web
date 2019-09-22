@@ -1,15 +1,7 @@
 <script>
-  import { onMount, onDestroy, beforeUpdate } from "svelte";
-
   export let value = 0;
   export let min = 0;
   export let max = 0;
-
-  let items = [];
-
-  beforeUpdate(() => {
-    items = [...new Array(max - min)].map((e, i) => min + i);
-  });
 
   function decrement() {
     value--;

@@ -1,5 +1,4 @@
 <script>
-  import { room } from "../store/game";
   import { GameHub } from "../services/game";
   import PlayButton from "../components/PlayButton.svelte";
   import PlayIcon from "../components/icons/PlayIcon.svelte";
