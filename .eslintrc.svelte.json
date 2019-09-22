@@ -14,7 +14,7 @@
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "no-console": "off",
-    "prettier/prettier": ["error", { "trailingComma": "es5" }],
+    "prettier/prettier": ["off"],
     "react/prop-types": 0
   },
   "overrides": [
