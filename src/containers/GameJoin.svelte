@@ -3,12 +3,12 @@
   import { navigate } from "svelte-routing";
 
   import { connectToPublicGame } from "../services/api";
-  import { handleError } from "../services/errors";
+  import { globalErrorsHandler } from "../services/errors";
   import { PLAYERS_MAX_COUNT, PLAYERS_MIN_COUNT } from "../constants/game";
 
   import RangeSelect from "../components/RangeSelect.svelte";
 
-  let playersMaxCount = 2;
+  let playersMaxCount = 0;
 
   onDestroy(() => {});
 
@@ -17,7 +17,7 @@
       await connectToPublicGame({ playersMaxCount });
       navigate(`/game`, { replace: true });
     } catch (err) {
-      handleError(err);
+      globalErrorsHandler(err);
     }
   }
 </script>

@@ -1,3 +1,3 @@
-export const handleError = function(error) {
-  console.log(error);
+export const globalErrorsHandler = function(error) {
+  alert(error);
 };

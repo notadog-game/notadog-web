@@ -3,7 +3,7 @@
   import { navigate } from "svelte-routing";
 
   import { connectToPrivateGame } from "../services/api";
-  import { handleError } from "../services/errors";
+  import { globalErrorsHandler } from "../services/errors";
 
   let isLoading = true;
   let isError = false;
@@ -16,7 +16,7 @@
       await joinRoom();
     } catch (err) {
       isLoading = false;
-      handleError(e);
+      globalErrorsHandler(e);
     }
   });
 

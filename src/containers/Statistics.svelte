@@ -1,9 +1,15 @@
 <script>
   import { users } from "../store/users";
   import { onMount, onDestroy } from "svelte";
+  import { getUsers } from "../services/api";
 
-  function refreshClickHandler() {
-    users.load();
+  async function refreshClickHandler() {
+    try {
+      const items = await getUsers();
+      users.set(items);
+    } catch (e) {
+      globalErrorsHandler(e);
+    }
   }
 
   onMount(() => {

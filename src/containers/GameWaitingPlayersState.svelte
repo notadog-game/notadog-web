@@ -9,7 +9,7 @@
     isRoomRoot,
     isPrivateRoom
   } from "../store/game";
-  import { GameHub } from "../services/game";
+  import { GameHub } from "../hubs/game";
   import PlayersList from "../components/PlayersList.svelte";
 
   let clipboard = "";

@@ -3,7 +3,7 @@
   import { navigate } from "svelte-routing";
 
   import { createGame } from "../services/api";
-  import { handleError } from "../services/errors";
+  import { globalErrorsHandler } from "../services/errors";
 
   onDestroy(() => {});
 
@@ -12,7 +12,7 @@
       await createGame();
       navigate(`/game`, { replace: true });
     } catch (err) {
-      handleError(err);
+      globalErrorsHandler(err);
     }
   }
 </script>

@@ -5,9 +5,9 @@
 
   import { room, isWin, isRoomRoot } from "../store/game";
 
-  import { GameHub } from "../services/game";
+  import { GameHub } from "../hubs/game";
   import { GAME_STATES } from "../constants/game";
-  import { handleError } from "../services/errors";
+  import { globalErrorsHandler } from "../services/errors";
 
   import PlayersList from "../components/PlayersList.svelte";
 
