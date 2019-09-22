@@ -11,7 +11,7 @@
     clipboard = new ClipboardJS(".copy", {
       text: function(trigger) {
         return trigger.getAttribute("aria-label");
-      }
+      },
     });
   });
 
