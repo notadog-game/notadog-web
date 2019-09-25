@@ -2,7 +2,7 @@ import signalR from "@aspnet/signalr/dist/browser/signalr";
 import { room, player } from "../store/game";
 import { config } from "../config.js";
 import { tokenService } from "../services/token";
-import { globalErrorsHandler } from "../services/errors";
+import { globalHubErrorsHandler } from "../store/errors";
 
 let connection;
 
@@ -43,7 +43,7 @@ export class GameHub {
       this.init();
       await connection.start();
     } catch (err) {
-      globalErrorsHandler(err);
+      globalHubErrorsHandler(err);
     }
   }
 
@@ -52,7 +52,7 @@ export class GameHub {
       if (!connection) return;
       await connection.stop();
     } catch (err) {
-      globalErrorsHandler(err);
+      globalHubErrorsHandler(err);
     }
   }
 
@@ -60,7 +60,7 @@ export class GameHub {
     try {
       await connection.invoke("Refresh");
     } catch (err) {
-      globalErrorsHandler(err);
+      globalHubErrorsHandler(err.message);
     }
   }
 
@@ -68,7 +68,7 @@ export class GameHub {
     try {
       await connection.invoke("Replay");
     } catch (err) {
-      globalErrorsHandler(err);
+      globalHubErrorsHandler(err);
     }
   }
 
@@ -76,7 +76,7 @@ export class GameHub {
     try {
       await connection.invoke("StartGame");
     } catch (err) {
-      globalErrorsHandler(err);
+      globalHubErrorsHandler(err);
     }
   }
 
@@ -84,7 +84,7 @@ export class GameHub {
     try {
       await connection.invoke("MakeMove");
     } catch (err) {
-      globalErrorsHandler(err);
+      globalHubErrorsHandler(err);
     }
   }
 
@@ -92,7 +92,7 @@ export class GameHub {
     try {
       await connection.invoke("LeaveRoom");
     } catch (err) {
-      globalErrorsHandler(err);
+      globalHubErrorsHandler(err);
     }
   }
 }

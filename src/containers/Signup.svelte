@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import { signup } from "../services/api";
-  import { globalErrorsHandler } from "../services/errors";
+  import { globalErrorsHandler } from "../store/errors";
   import { tokenService } from "../services/token";
 
   let name = "";
@@ -13,8 +13,8 @@
     try {
       const token = await signup({ name, email, password });
       tokenService.set(token);
-    } catch (e) {
-      globalErrorsHandler(e);
+    } catch (err) {
+      globalErrorsHandler(err);
     }
   }
 </script>

@@ -1,7 +1,7 @@
 <script>
   import { room, isWin, isRoomRoot } from "../store/game";
 
-  import { GameHub } from "../services/game";
+  import { GameHub } from "../hubs/game";
 
   import PlayersList from "../components/PlayersList.svelte";
 
@@ -9,7 +9,7 @@
     return room.players
       .map(player => ({
         ...player,
-        isMakedMove: !!room.makedMovePlayerIds.find(id => id === player.id),
+        isMakedMove: !!room.makedMovePlayerIds.find(id => id === player.id)
       }))
       .sort((p1, p2) => p2.isMakedMove - p1.isMakedMove);
   }

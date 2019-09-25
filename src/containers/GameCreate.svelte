@@ -2,7 +2,7 @@
   import { navigate } from "svelte-routing";
 
   import { createGame } from "../services/api";
-  import { globalErrorsHandler } from "../services/errors";
+  import { globalErrorsHandler } from "../store/errors";
 
   async function createRoomHandler() {
     try {

@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import { getUsers } from "../services/api";
-import { globalErrorsHandler } from "../services/errors";
+import { globalErrorsHandler } from "../store/errors";
 
 function createUsersStore() {
   const { subscribe, set } = writable([]);

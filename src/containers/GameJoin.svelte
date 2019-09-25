@@ -2,7 +2,7 @@
   import { navigate } from "svelte-routing";
 
   import { connectToPublicGame } from "../services/api";
-  import { globalErrorsHandler } from "../services/errors";
+  import { globalErrorsHandler } from "../store/errors";
   import { PLAYERS_MAX_COUNT, PLAYERS_MIN_COUNT } from "../constants/game";
 
   import RangeSelect from "../components/RangeSelect.svelte";

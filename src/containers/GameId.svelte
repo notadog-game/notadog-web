@@ -3,7 +3,7 @@
   import { navigate } from "svelte-routing";
 
   import { connectToPrivateGame } from "../services/api";
-  import { globalErrorsHandler } from "../services/errors";
+  import { globalErrorsHandler } from "../store/errors";
 
   let isLoading = true;
   let roomId = "";
