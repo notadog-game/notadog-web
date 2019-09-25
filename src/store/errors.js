@@ -22,7 +22,7 @@ const errorHandler = error => {
 };
 
 export const globalErrorsHandler = error =>
-  error.Code ? errorCodeHandler(error.Code) : errorHandler(error);
+  error.code ? errorCodeHandler(error.code) : errorHandler(error);
 
 export const globalHubErrorsHandler = ({ message }) => {
   const error = JSON.parse(message.split("HubException: ")[1]);
