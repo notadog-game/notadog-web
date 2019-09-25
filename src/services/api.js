@@ -51,3 +51,15 @@ export const connectToPrivateGame = async ({ forceAdding, roomId }) => {
     throw new Error(e);
   }
 };
+
+export const updateProfile = async ({ name, email, password }) => {
+  try {
+    return await requestService.put("/Profile", {
+      name,
+      email,
+      password,
+    });
+  } catch (e) {
+    throw new Error(e);
+  }
+};
