@@ -1,6 +1,5 @@
 <script>
   import PlayButton from "../components/PlayButton.svelte";
-  import ProfileButton from "../components/ProfileButton.svelte";
   import PlayIcon from "../components/icons/PlayIcon.svelte";
   import StartIcon from "../components/icons/StartIcon.svelte";
   import UserCard from "../components/UserCard.svelte";
@@ -31,6 +30,5 @@
     <PlayIcon />
   </PlayButton>
 
-  <ProfileButton />
   <UserCard name={'Adam Sandler'} points={150} />
 </div>
