@@ -60,20 +60,6 @@
   width: 100%;
 }
 
-.subnav > a {
-  background-color: #fff;
-  border: none;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  font-family: Poppins;
-  font-size: 16px;
-  height: 63px;
-  line-height: 63px;
-  padding: 0 20px;
-  text-align: left;
-  width: 100%;
-}
-
 .btn--basic:hover {
   background-color: var(--NAD_WHITE);
   color: var(--NAD_BLACK);
@@ -125,4 +111,18 @@
   padding: 5px;
   overflow: scroll;
   border: 1px solid var(--NAD_SERVICE);
+}
+
+.subnav > a {
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-family: Poppins;
+  font-size: 16px;
+  height: 63px;
+  line-height: 63px;
+  padding: 0 20px;
+  text-align: left;
+  width: 100%;
 }
