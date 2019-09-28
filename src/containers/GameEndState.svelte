@@ -9,7 +9,7 @@
     return room.players
       .map(player => ({
         ...player,
-        isMakedMove: !!room.makedMovePlayerIds.find(id => id === player.id)
+        isMakedMove: !!room.makedMovePlayerIds.find(id => id === player.id),
       }))
       .sort((p1, p2) => p2.isMakedMove - p1.isMakedMove);
   }

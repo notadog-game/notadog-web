@@ -1,6 +1,6 @@
-export const DEFAULT_ERROR = "Unknown error";
-
 export const ERRORS_CODES = {
+  Default: () => "Unknown error",
+
   UserNotFound: () => "UserNotFound",
   UserEmailAlreadyExist: () => "UserEmailAlreadyExist",
   UserEmailUncorrect: () => "UserEmailUncorrect",

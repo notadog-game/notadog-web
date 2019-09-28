@@ -14,7 +14,7 @@ function createErrorsStore() {
 export const errors = createErrorsStore();
 
 const errorCodeHandler = code => {
-  console.log("errorCodeHandler", ERRORS_CODES[code]());
+  console.log("errorCodeHandler", ERRORS_CODES[code || "Default"]());
 };
 
 const errorHandler = error => {
