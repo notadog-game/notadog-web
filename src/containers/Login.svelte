@@ -2,7 +2,7 @@
   import { Link } from "svelte-routing";
   import { tokenService } from "../services/token";
   import { login } from "../services/api";
-  import { handleError } from "../services/errors";
+  import { globalErrorsHandler } from "../store/errors";
 
   let email = "";
   let password = "";
@@ -12,8 +12,8 @@
       const token = await login({ email, password });
       tokenService.set(token);
       window.location.replace("/game");
-    } catch (e) {
-      handleError(e);
+    } catch (err) {
+      globalErrorsHandler(err);
     }
   }
 </script>

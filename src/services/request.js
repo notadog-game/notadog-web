@@ -36,8 +36,8 @@ export class requestService {
   static handleResponse(promise) {
     return promise
       .then(res => res.data)
-      .catch(e => {
-        throw new Error(e);
+      .catch(err => {
+        throw new Error(err.message);
       });
   }
 }

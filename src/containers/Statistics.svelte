@@ -1,13 +1,13 @@
 <script>
-  import { users } from "../store/users";
   import { onMount } from "svelte";
+  import { users, loadUsersAction } from "../store/users";
 
-  function refreshClickHandler() {
-    users.load();
+  async function refreshClickHandler() {
+    loadUsersAction();
   }
 
   onMount(() => {
-    if (!$users.length) users.load();
+    if (!$users.length) loadUsersAction();
   });
 </script>
 

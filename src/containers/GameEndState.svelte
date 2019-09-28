@@ -1,7 +1,7 @@
 <script>
   import { room, isWin, isRoomRoot } from "../store/game";
 
-  import { GameHub } from "../services/game";
+  import { GameHub } from "../hubs/game";
 
   import PlayersList from "../components/PlayersList.svelte";
 

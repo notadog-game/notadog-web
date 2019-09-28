@@ -3,16 +3,16 @@ import { requestService } from "./request";
 export const getUsers = async () => {
   try {
     return await requestService.get("/users");
-  } catch (e) {
-    throw new Error(e);
+  } catch (err) {
+    throw new Error(err.message);
   }
 };
 
 export const login = async ({ email, password }) => {
   try {
     return await requestService.post("/Users/login", { email, password });
-  } catch (e) {
-    throw new Error(e);
+  } catch (err) {
+    throw new Error(err.message);
   }
 };
 
@@ -23,32 +23,32 @@ export const signup = async ({ name, email, password }) => {
       email,
       password,
     });
-  } catch (e) {
-    throw new Error(e);
+  } catch (err) {
+    throw new Error(err.message);
   }
 };
 
 export const createGame = async () => {
   try {
     return await requestService.post("/Game");
-  } catch (e) {
-    throw new Error(e);
+  } catch (err) {
+    throw new Error(err.message);
   }
 };
 
 export const connectToPublicGame = async ({ playersMaxCount }) => {
   try {
     return await requestService.put("/Game/Public", { playersMaxCount });
-  } catch (e) {
-    throw new Error(e);
+  } catch (err) {
+    throw new Error(err.message);
   }
 };
 
 export const connectToPrivateGame = async ({ forceAdding, roomId }) => {
   try {
     return await requestService.put("/Game/Private", { forceAdding, roomId });
-  } catch (e) {
-    throw new Error(e);
+  } catch (err) {
+    throw new Error(err.message);
   }
 };
 
