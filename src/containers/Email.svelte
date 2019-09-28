@@ -1,6 +1,6 @@
 <script>
   import { updateProfile } from "../services/api";
-  import { handleError } from "../services/errors";
+  import { globalErrorsHandler } from "../store/errors";
 
   let newEmail = "";
 
@@ -9,7 +9,7 @@
       await updateProfile({ email: newEmail });
       console.log("email is updated");
     } catch (e) {
-      handleError(e);
+      globalErrorsHandler(e);
     }
   }
 </script>
