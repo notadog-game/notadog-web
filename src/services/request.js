@@ -1,6 +1,7 @@
 import axios from "axios";
 import { tokenService } from "./token";
 import { config } from "../config.js";
+import { axiosMiddlewareErrorsHandler } from "../store/errors";
 
 if (config.apiHost == "undefined") {
   console.error("Missing API host!");
@@ -18,26 +19,26 @@ const requestProvider = axios.create({
 
 export class requestService {
   static get(url = "") {
-    return this.handleResponse(requestProvider.get(url));
+    return requestProvider.get(url);
   }
 
   static delete(url = "") {
-    return this.handleResponse(requestProvider.delete(url));
+    return requestProvider.delete(url);
   }
 
   static post(url = "", data = {}) {
-    return this.handleResponse(requestProvider.post(url, data));
+    return requestProvider.post(url, data);
   }
 
   static put(url = "", data = {}) {
-    return this.handleResponse(requestProvider.put(url, data));
-  }
-
-  static handleResponse(promise) {
-    return promise
-      .then(res => res.data)
-      .catch(err => {
-        throw new Error(err.message);
-      });
+    return requestProvider.put(url, data);
   }
 }
+
+requestProvider.interceptors.response.use(
+  res => res.data,
+  error => {
+    axiosMiddlewareErrorsHandler(error.response);
+    return Promise.reject(error);
+  }
+);

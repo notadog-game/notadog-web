@@ -3,19 +3,16 @@
   import { navigate } from "svelte-routing";
 
   import { connectToPrivateGame } from "../services/api";
-  import { globalErrorsHandler } from "../store/errors";
 
   let isLoading = true;
   let roomId = "";
 
   onMount(async () => {
     roomId = location.pathname.replace("/game/", "");
-
     try {
       await joinRoom();
     } catch (err) {
       isLoading = false;
-      globalErrorsHandler(err);
     }
   });
 
@@ -33,7 +30,6 @@
       navigate(`/game`, { replace: true });
     } catch (err) {
       isLoading = false;
-      globalErrorsHandler(err);
     }
   }
 

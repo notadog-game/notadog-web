@@ -1,6 +1,5 @@
 <script>
   import { updateProfile } from "../services/api";
-  import { globalErrorsHandler } from "../store/errors";
 
   let newPassword1 = "";
   let newPassword2 = "";
@@ -12,7 +11,7 @@
       await updateProfile({ password: newPassword1 });
       console.log("password is updated");
     } catch (e) {
-      globalErrorsHandler(e);
+      // TODO: Implement client errors
     }
   }
 </script>

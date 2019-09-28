@@ -1,7 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
   import { signup } from "../services/api";
-  import { globalErrorsHandler } from "../store/errors";
   import { tokenService } from "../services/token";
 
   let name = "";
@@ -10,12 +9,8 @@
   let password1 = "";
 
   async function handleSubmit() {
-    try {
-      const token = await signup({ name, email, password });
-      tokenService.set(token);
-    } catch (err) {
-      globalErrorsHandler(err);
-    }
+    const token = await signup({ name, email, password });
+    tokenService.set(token);
   }
 </script>
 
