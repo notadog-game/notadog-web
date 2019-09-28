@@ -21,7 +21,7 @@
     room.reset();
   });
 
-  async function joinGameHandler() {
+  function joinGameHandler() {
     navigate("/game/join", { replace: true });
   }
 

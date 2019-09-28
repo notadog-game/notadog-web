@@ -1,16 +1,10 @@
 <script>
   import { updateProfile } from "../services/api";
-  import { globalErrorsHandler } from "../store/errors";
 
   let newEmail = "";
 
   async function handleSubmit() {
-    try {
-      await updateProfile({ email: newEmail });
-      console.log("email is updated");
-    } catch (e) {
-      globalErrorsHandler(e);
-    }
+    await updateProfile({ email: newEmail });
   }
 </script>
 

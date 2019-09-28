@@ -1,6 +1,5 @@
 import { writable } from "svelte/store";
 import { getUsers } from "../services/api";
-import { globalErrorsHandler } from "../store/errors";
 
 function createUsersStore() {
   const { subscribe, set } = writable([]);
@@ -15,10 +14,6 @@ function createUsersStore() {
 export const users = createUsersStore();
 
 export const loadUsersAction = async () => {
-  try {
-    const items = await getUsers();
-    users.set(items);
-  } catch (err) {
-    globalErrorsHandler(err);
-  }
+  const items = await getUsers();
+  users.set(items);
 };

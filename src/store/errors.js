@@ -17,14 +17,15 @@ const errorCodeHandler = code => {
   console.log("errorCodeHandler", ERRORS_CODES[code || "Default"]());
 };
 
-const errorHandler = error => {
-  console.log("errorHandler", error);
+const errorStatusHandler = status => {
+  console.log("errorStatusHandler", status);
 };
-
-export const globalErrorsHandler = error =>
-  error.code ? errorCodeHandler(error.code) : errorHandler(error);
 
 export const globalHubErrorsHandler = ({ message }) => {
   const error = JSON.parse(message.split("HubException: ")[1]);
-  return globalErrorsHandler(error);
+  return axiosMiddlewareErrorsHandler(error);
+};
+
+export const axiosMiddlewareErrorsHandler = ({ status, data }) => {
+  data ? errorCodeHandler(data.code) : errorStatusHandler(status);
 };
