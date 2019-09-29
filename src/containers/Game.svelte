@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
   import { room, player, stepCode } from "../store/game";
@@ -52,29 +53,29 @@
 
 <div class="container noselect">
   <div class="header">
-    <h1>Game</h1>
+    <h1>{$_('common.game')}</h1>
     <RefreshButton on:click={refreshHandler} />
   </div>
 
   {#if $room === undefined}
-    <div class="game-status flex-cc">Connecting...</div>
+    <div class="game-status flex-cc">{$_('common.connecting')}</div>
   {:else if $room === null}
     <div class="user-card">
       <UserCard user={$player} />
     </div>
-    <div class="game-status flex-cc">Connected</div>
+    <div class="game-status flex-cc">{$_('common.connected')}</div>
     <button class="btn btn--basic" on:click={joinGameHandler}>
-      Join public room
+      {$_('game.joinPublicRoom')}
     </button>
     <button class="btn btn--basic" on:click={createGameHandler}>
-      Create room
+      {$_('game.createRoom')}
     </button>
   {:else}
     {#if $stepCode === GAME_STATES.WAITING_PLAYERS}
       <GameWaitingPlayersState>
         <span slot="leaveButton">
           <button class="btn btn--basic" on:click={leaveGameHandler}>
-            Leave room
+            {$_('game.leaveRoom')}
           </button>
         </span>
       </GameWaitingPlayersState>
@@ -89,7 +90,7 @@
         </span>
         <span slot="leaveButton">
           <button class="btn btn--basic" on:click={leaveGameHandler}>
-            Leave room
+            {$_('game.leaveRoom')}
           </button>
         </span>
       </GameWaitingStartState>
@@ -104,7 +105,7 @@
         </span>
         <span slot="leaveButton">
           <button class="btn btn--basic" on:click={leaveGameHandler}>
-            Leave room
+            {$_('game.leaveRoom')}
           </button>
         </span>
       </GamePlayingState>
@@ -114,7 +115,7 @@
       <GameEndState>
         <span slot="leaveButton">
           <button class="btn btn--basic" on:click={leaveGameHandler}>
-            Leave room
+            {$_('game.leaveRoom')}
           </button>
         </span>
       </GameEndState>

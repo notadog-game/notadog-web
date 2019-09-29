@@ -1,7 +1,7 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { onMount, onDestroy } from "svelte";
   import { navigate } from "svelte-routing";
-
   import { connectToPrivateGame } from "../services/api";
 
   let isLoading = true;
@@ -39,13 +39,13 @@
 </script>
 
 <div class="container">
-  <h1>Game Id</h1>
+  <h1>{$_('game.title')}</h1>
 
   {#if isLoading}
-    Loading
+    {$_('common.loading')}
   {:else}
     <button class="btn btn--basic" on:click={forceJoinRoomHandler()}>
-      Force Join
+      {$_('game.forceJoin')}
     </button>
   {/if}
 

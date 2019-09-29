@@ -4,6 +4,7 @@ import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import replace from "rollup-plugin-replace";
+import json from "rollup-plugin-json";
 import dotenv from "dotenv";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -37,6 +38,10 @@ export default {
       css: css => {
         css.write("public/bundle.css");
       },
+    }),
+
+    json({
+      namedExports: true, // Default: true
     }),
 
     // If you have external dependencies installed from

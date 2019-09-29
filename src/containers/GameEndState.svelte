@@ -1,8 +1,7 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { room, isWin, isRoomRoot } from "../store/game";
-
   import { GameHub } from "../hubs/game";
-
   import PlayersList from "../components/PlayersList.svelte";
 
   function getEndStatePlayers(room) {
@@ -20,9 +19,9 @@
 </script>
 
 {#if $isWin}
-  <div class="game-status flex-cc">You are not Dog! =)</div>
+  <div class="game-status flex-cc">{$_('game.win')}</div>
 {:else}
-  <div class="game-status flex-cc">You are a Dog. =(</div>
+  <div class="game-status flex-cc">{$_('game.loose')}</div>
 {/if}
 
 <div class="players-list">
@@ -30,7 +29,9 @@
 </div>
 
 {#if $isRoomRoot}
-  <button class="btn btn--basic" on:click={replayClickHandler}>Replay</button>
+  <button class="btn btn--basic" on:click={replayClickHandler}>
+    {$_('game.replay')}
+  </button>
 {/if}
 
 <slot name="leaveButton" />

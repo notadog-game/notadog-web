@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { Link } from "svelte-routing";
   import { signup } from "../services/api";
   import { tokenService } from "../services/token";
@@ -16,37 +17,37 @@
 
 <div class="container">
   <form class="form" on:submit|preventDefault={handleSubmit}>
-    <h1>Not a Dog!</h1>
+    <h1>{$_('titles.notadog')}</h1>
 
     <input
       class="input form__input"
       type="text"
-      placeholder="Enter your name"
+      placeholder={$_('common.enterName')}
       bind:value={name} />
 
     <input
       class="input form__input"
       type="text"
-      placeholder="Enter your email"
+      placeholder={$_('common.enterEmail')}
       bind:value={email} />
 
     <input
       class="input form__input"
       type="password"
-      placeholder="Enter your password"
+      placeholder={$_('common.enterPassword')}
       bind:value={password} />
 
     <input
       class="input form__input"
       type="password"
-      placeholder="Repeat your password"
+      placeholder={$_('common.repeatPassword')}
       bind:value={password1} />
 
-    <button class="btn btn--basic form__btn">Signup</button>
+    <button class="btn btn--basic form__btn">{$_('common.signup')}</button>
 
     <div>
-      <span>Already onboard?</span>
-      <Link to="login">Login</Link>
+      <span>{$_('questions.wantToLogin')}</span>
+      <Link to="login">{$_('common.login')}</Link>
     </div>
 
   </form>

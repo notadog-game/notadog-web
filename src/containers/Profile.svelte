@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { Router, Link, Route } from "svelte-routing";
 
   import Index from "./ProfileIndex.svelte";
@@ -17,13 +18,13 @@
 </style>
 
 <div class="container">
-  <h1>Profile</h1>
+  <h1>{$_('common.profile')}</h1>
   <Router {url}>
     <nav class="subnav">
-      <Link to="/">Index</Link>
-      <Link to="username">Username</Link>
-      <Link to="email">Email</Link>
-      <Link to="password">Password</Link>
+      <Link to="/">{$_('common.index')}</Link>
+      <Link to="username">{$_('common.name')}</Link>
+      <Link to="email">{$_('common.email')}</Link>
+      <Link to="password">{$_('common.password')}</Link>
     </nav>
     <div>
       <Route path="/" component={Index} />
