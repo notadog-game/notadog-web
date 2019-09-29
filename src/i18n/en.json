@@ -1,16 +1,18 @@
 {
   "titles": {
-    "notadog": "Not a Dog"
+    "notadog": "Not a Dog!"
   },
   "common": {
     "home": "Home",
     "login": "Login",
     "signup": "Signup",
+    "enterName": "Enter your name",
     "enterEmail": "Enter your email",
-    "enterPassword": "Enter your password"
+    "enterPassword": "Enter your password",
+    "repeatPassword": "Repeat password"
   },
   "questions": {
-    "wantToLogin": "Want to login?",
+    "wantToLogin": "Already have account?",
     "wantToSignup": "Want to signup?"
   }
 }
