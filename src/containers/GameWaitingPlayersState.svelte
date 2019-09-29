@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { onMount, onDestroy } from "svelte";
   import ClipboardJS from "clipboard";
   import { players, roomLink, isRoomRoot, isPrivateRoom } from "../store/game";
@@ -24,7 +25,7 @@
   }
 </script>
 
-<div class="game-status flex-cc">Waiting players</div>
+<div class="game-status flex-cc">{$_('game.waitingPlayersTitle')}</div>
 
 <div class="players-list">
   <PlayersList users={$players} />
@@ -32,12 +33,14 @@
 
 {#if $isPrivateRoom}
   <button class="btn btn--basic copy" aria-label={$roomLink}>
-    Copy game link
+    {$_('game.copyLink')}
   </button>
 {/if}
 
 {#if $isRoomRoot}
-  <button class="btn btn--basic" on:click={startGameHandler}>Start Game</button>
+  <button class="btn btn--basic" on:click={startGameHandler}>
+    {$_('game.start')}
+  </button>
 {/if}
 
 <slot name="leaveButton" />

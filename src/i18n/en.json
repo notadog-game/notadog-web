@@ -1,12 +1,26 @@
 {
   "common": {
+    "connected": "Connected",
+    "connecting": "Connecting...",
     "confirm": "Confirm",
+    "create": "Create",
     "email": "Email",
+    "join": "Join",
     "home": "Home",
+    "index": "index",
+    "game": "Game",
+    "loading": "Loading",
     "login": "Login",
+    "logout": "Logout",
     "name": "Name",
+    "notadogTitle": "Not a Dog!",
     "password": "Password",
+    "profile": "Profile",
+    "refresh": "refresh",
     "repeatPassword": "Repeat password",
+    "settings": "Settings",
+    "statistics": "Statistics",
+    "styleguide": "Syleguide",
     "signup": "Signup",
     "update": "Update"
   },
@@ -18,12 +32,24 @@
     "newPassword": "Enter new password",
     "password": "Enter your password"
   },
+  "game": {
+    "copyLink": "Copy game link",
+    "createTitle": "Create Game",
+    "createRoom": "Create Room",
+    "forceJoin": "Force join",
+    "joinGameTitle": "Join game",
+    "joinPublicRoom": "Join Public Room",
+    "leaveRoom": "Leave Room",
+    "loose": "You are a Dog. =(",
+    "playingStateTitle": "Playing",
+    "replay": "Replay",
+    "start": "Start game",
+    "waitingPlayersTitle": "Waiting Players",
+    "waitingStartTitles": "Waiting Start",
+    "win": "You are not Dog! =)"
+  },
   "questions": {
     "wantToLogin": "Already have account?",
     "wantToSignup": "Want to signup?"
-  },
-  "titles": {
-    "game": "Game",
-    "notadog": "Not a Dog!"
   }
 }
