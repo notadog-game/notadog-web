@@ -21,7 +21,7 @@
   import { tokenService } from "../services/token";
   import { errors } from "../store/errors";
 
-  const { addNotification } = getNotificationsContext();
+  const { addNotification, clearNotifications } = getNotificationsContext();
 
   export let url = "";
   let myToken = "";
@@ -38,7 +38,11 @@
 
   errors.subscribe(text => {
     if (!text) return;
+
+    clearNotifications();
     addNotification({ text, position: "bottom-center" });
+
+    errors.reset();
   });
 </script>
 
