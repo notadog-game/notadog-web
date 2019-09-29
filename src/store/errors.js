@@ -21,9 +21,13 @@ const errorStatusHandler = status => {
   console.log("errorStatusHandler", status);
 };
 
+const errorHandler = error => {
+  console.log("errorHandler", error);
+};
+
 export const globalHubErrorsHandler = ({ message }) => {
   const error = JSON.parse(message.split("HubException: ")[1]);
-  return axiosMiddlewareErrorsHandler(error);
+  error.code ? errorCodeHandler(error.code) : errorHandler(error);
 };
 
 export const axiosMiddlewareErrorsHandler = ({ status, data }) => {
