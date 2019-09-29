@@ -1,0 +1,16 @@
+{
+  "titles": {
+    "notadog": "Not a Dog"
+  },
+  "common": {
+    "home": "Home",
+    "login": "Login",
+    "signup": "Signup",
+    "enterEmail": "Enter your email",
+    "enterPassword": "Enter your password"
+  },
+  "questions": {
+    "wantToLogin": "Want to login?",
+    "wantToSignup": "Want to signup?"
+  }
+}

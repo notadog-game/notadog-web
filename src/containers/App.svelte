@@ -1,8 +1,11 @@
 <script>
   import { beforeUpdate } from "svelte";
-
   import { Router, Link, Route } from "svelte-routing";
   import { getNotificationsContext } from "svelte-notifications";
+  import { locale, dictionary } from "svelte-i18n";
+
+  import enLocale from "../i18n/en.json";
+  import ruLocale from "../i18n/ru.json";
 
   import Home from "./Home.svelte";
   import Login from "./Login.svelte";
@@ -35,6 +38,9 @@
   beforeUpdate(() => {
     myToken = tokenService.get();
   });
+
+  dictionary.set({ en: enLocale, ru: ruLocale });
+  locale.set("en");
 
   errors.subscribe(text => {
     if (!text) return;
