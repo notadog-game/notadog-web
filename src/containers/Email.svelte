@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { updateProfile } from "../services/api";
 
   let newEmail = "";
@@ -10,14 +11,14 @@
 
 <div class="container">
   <form class="form" on:submit|preventDefault={handleSubmit}>
-    <h1>Email</h1>
+    <h1>{$_('common.email')}</h1>
 
     <input
       class="input form__input"
       type="email"
-      placeholder="new email"
+      placeholder={$_('common.enterNewEmail')}
       bind:value={newEmail}
       required />
-    <button class="btn btn--basic form__btn">Confirm</button>
+    <button class="btn btn--basic form__btn">{$_('common.confirm')}</button>
   </form>
 </div>

@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { updateProfile } from "../services/api";
 
   let newUsername = "";
@@ -10,14 +11,14 @@
 
 <div class="container">
   <form class="form" on:submit|preventDefault={handleSubmit}>
-    <h1>Username</h1>
+    <h1>{$_('common.name')}</h1>
 
     <input
       class="input form__input"
       type="text"
-      placeholder="new username"
+      placeholder={$_('common.enterNewName')}
       bind:value={newUsername}
       required />
-    <button class="btn btn--basic form__btn">Confirm</button>
+    <button class="btn btn--basic form__btn">{$_('common.confirm')}</button>
   </form>
 </div>

@@ -6,10 +6,18 @@
     "home": "Home",
     "login": "Login",
     "signup": "Signup",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
     "enterName": "Enter your name",
+    "enterNewName": "Enter new name",
     "enterEmail": "Enter your email",
+    "enterNewEmail": "Enter new email",
     "enterPassword": "Enter your password",
-    "repeatPassword": "Repeat password"
+    "enterNewPassword": "Enter new password",
+    "repeatPassword": "Repeat password",
+    "update": "Update",
+    "confirm": "Confirm"
   },
   "questions": {
     "wantToLogin": "Already have account?",
