@@ -2,24 +2,28 @@
   import { beforeUpdate } from "svelte";
 
   import { Router, Link, Route } from "svelte-routing";
-  import Home from "./containers/Home.svelte";
-  import Login from "./containers/Login.svelte";
-  import Signup from "./containers/Signup.svelte";
-  import Empty from "./containers/Empty.svelte";
+  import { getNotificationsContext } from "svelte-notifications";
 
-  import Game from "./containers/Game.svelte";
-  import GameCreate from "./containers/GameCreate.svelte";
-  import GameId from "./containers/GameId.svelte";
-  import GameJoin from "./containers/GameJoin.svelte";
-  import Profile from "./containers/Profile.svelte";
-  import Settings from "./containers/Settings.svelte";
-  import Statistics from "./containers/Statistics.svelte";
-  import Styleguide from "./containers/Styleguide.svelte";
+  import Home from "./Home.svelte";
+  import Login from "./Login.svelte";
+  import Signup from "./Signup.svelte";
+  import Empty from "./Empty.svelte";
 
-  import { tokenService } from "./services/token";
+  import Game from "./Game.svelte";
+  import GameCreate from "./GameCreate.svelte";
+  import GameId from "./GameId.svelte";
+  import GameJoin from "./GameJoin.svelte";
+  import Profile from "./Profile.svelte";
+  import Settings from "./Settings.svelte";
+  import Statistics from "./Statistics.svelte";
+  import Styleguide from "./Styleguide.svelte";
+
+  import { tokenService } from "../services/token";
+  import { errors } from "../store/errors";
+
+  const { addNotification } = getNotificationsContext();
 
   export let url = "";
-
   let myToken = "";
 
   function logoutClickHandler(e) {
@@ -30,6 +34,11 @@
 
   beforeUpdate(() => {
     myToken = tokenService.get();
+  });
+
+  errors.subscribe(text => {
+    if (!text) return;
+    addNotification({ text, position: "bottom-center" });
   });
 </script>
 

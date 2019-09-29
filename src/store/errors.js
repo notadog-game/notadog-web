@@ -2,19 +2,20 @@ import { writable } from "svelte/store";
 import { ERRORS_CODES } from "../constants/errors";
 
 function createErrorsStore() {
-  const { subscribe, set } = writable([]);
+  const { subscribe, set } = writable(null);
 
   return {
     subscribe,
-    set: ({ code, message }) => set({ [code]: message }),
-    reset: () => set([]),
+    set: message => set(message),
+    reset: () => set(null),
   };
 }
 
 export const errors = createErrorsStore();
 
 const errorCodeHandler = code => {
-  console.log("errorCodeHandler", ERRORS_CODES[code || "Default"]());
+  const message = ERRORS_CODES[code || "Default"]();
+  errors.set(message);
 };
 
 const errorStatusHandler = status => {
