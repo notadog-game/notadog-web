@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { onMount } from "svelte";
   import { users, loadUsersAction } from "../store/users";
 
@@ -15,7 +16,7 @@
 
 </style>
 
-<h1>Statistics</h1>
+<h1>{$_('common.statistics')}</h1>
 <div class="container">
   <ul>
     {#each $users as user (user.id)}
@@ -23,5 +24,7 @@
     {/each}
   </ul>
 
-  <button class="btn btn--basic" on:click={refreshClickHandler}>Refresh</button>
+  <button class="btn btn--basic" on:click={refreshClickHandler}>
+    {$_('common.statistics')}
+  </button>
 </div>

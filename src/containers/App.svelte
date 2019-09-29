@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import { beforeUpdate } from "svelte";
   import { Router, Link, Route } from "svelte-routing";
   import { getNotificationsContext } from "svelte-notifications";
@@ -58,17 +59,17 @@
 
 <Router {url}>
   <nav>
-    <Link to="/">Home</Link>
+    <Link to="/">{$_('common.home')}</Link>
     {#if myToken}
-      <Link to="game">Game</Link>
-      <Link to="profile">Profile</Link>
-      <Link to="settings">Settings</Link>
-      <Link to="statistics">Statistics</Link>
-      <Link to="styleguide">Styleguide</Link>
-      <a href="#" on:click={logoutClickHandler}>Logout</a>
+      <Link to="game">{$_('common.game')}</Link>
+      <Link to="profile">{$_('common.profile')}</Link>
+      <Link to="settings">{$_('common.settings')}</Link>
+      <Link to="statistics">{$_('common.statistics')}</Link>
+      <Link to="styleguide">{$_('common.styleguide')}</Link>
+      <a href="#" on:click={logoutClickHandler}>{$_('common.logout')}</a>
     {:else}
-      <Link to="login">Login</Link>
-      <Link to="signup">Signup</Link>
+      <Link to="login">{$_('common.login')}</Link>
+      <Link to="signup">{$_('common.signup')}</Link>
     {/if}
   </nav>
 
