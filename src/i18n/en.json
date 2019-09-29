@@ -1,26 +1,29 @@
 {
-  "titles": {
-    "notadog": "Not a Dog!"
-  },
   "common": {
+    "confirm": "Confirm",
+    "email": "Email",
     "home": "Home",
     "login": "Login",
-    "signup": "Signup",
-    "email": "Email",
-    "password": "Password",
     "name": "Name",
-    "enterName": "Enter your name",
-    "enterNewName": "Enter new name",
-    "enterEmail": "Enter your email",
-    "enterNewEmail": "Enter new email",
-    "enterPassword": "Enter your password",
-    "enterNewPassword": "Enter new password",
+    "password": "Password",
     "repeatPassword": "Repeat password",
-    "update": "Update",
-    "confirm": "Confirm"
+    "signup": "Signup",
+    "update": "Update"
+  },
+  "enter": {
+    "email": "Enter your email",
+    "name": "Enter your name",
+    "newEmail": "Enter new email",
+    "newName": "Enter new name",
+    "newPassword": "Enter new password",
+    "password": "Enter your password"
   },
   "questions": {
     "wantToLogin": "Already have account?",
     "wantToSignup": "Want to signup?"
+  },
+  "titles": {
+    "game": "Game",
+    "notadog": "Not a Dog!"
   }
 }

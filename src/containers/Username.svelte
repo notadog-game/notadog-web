@@ -16,7 +16,7 @@
     <input
       class="input form__input"
       type="text"
-      placeholder={$_('common.enterNewName')}
+      placeholder={$_('common.enter.newName')}
       bind:value={newUsername}
       required />
     <button class="btn btn--basic form__btn">{$_('common.confirm')}</button>
