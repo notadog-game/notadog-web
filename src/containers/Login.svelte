@@ -21,13 +21,13 @@
     <input
       class="input form__input"
       type="text"
-      placeholder={$_('common.enterEmail')}
+      placeholder={$_('enter.email')}
       bind:value={email} />
 
     <input
       class="input form__input"
       type="password"
-      placeholder={$_('common.enterPassword')}
+      placeholder={$_('enter.password')}
       bind:value={password} />
 
     <button class="btn btn--basic form__btn">{$_('common.login')}</button>

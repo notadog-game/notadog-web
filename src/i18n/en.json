@@ -1,13 +1,14 @@
 {
   "common": {
+    "changeEmail": "Change email",
+    "changeName": "Change name",
+    "changePassword": "Change password",
     "connected": "Connected",
     "connecting": "Connecting...",
     "confirm": "Confirm",
     "create": "Create",
-    "email": "Email",
     "join": "Join",
     "home": "Home",
-    "index": "index",
     "game": "Game",
     "loading": "Loading",
     "login": "Login",
@@ -17,7 +18,6 @@
     "password": "Password",
     "profile": "Profile",
     "refresh": "refresh",
-    "repeatPassword": "Repeat password",
     "settings": "Settings",
     "statistics": "Statistics",
     "styleguide": "Syleguide",
@@ -30,7 +30,8 @@
     "newEmail": "Enter new email",
     "newName": "Enter new name",
     "newPassword": "Enter new password",
-    "password": "Enter your password"
+    "password": "Enter your password",
+    "repeatPassword": "Repeat password"
   },
   "game": {
     "copyLink": "Copy game link",

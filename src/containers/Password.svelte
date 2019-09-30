@@ -18,19 +18,19 @@
 
 <div class="container">
   <form class="form" on:submit|preventDefault={handleSubmit}>
-    <h1>{$_('common.password')}</h1>
+    <h1>{$_('common.changePassword')}</h1>
 
     <input
       class="input form__input"
       type="password"
-      placeholder={$_('common.enter.newPassword')}
+      placeholder={$_('enter.newPassword')}
       bind:value={newPassword1}
       required />
 
     <input
       class="input form__input"
       type="password"
-      placeholder={$_('common.repeatPassword')}
+      placeholder={$_('enter.repeatPassword')}
       bind:value={newPassword2}
       required />
 

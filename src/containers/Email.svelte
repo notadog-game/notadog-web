@@ -11,12 +11,12 @@
 
 <div class="container">
   <form class="form" on:submit|preventDefault={handleSubmit}>
-    <h1>{$_('common.email')}</h1>
+    <h1>{$_('common.changeEmail')}</h1>
 
     <input
       class="input form__input"
       type="email"
-      placeholder={$_('common.enter.newEmail')}
+      placeholder={$_('enter.newEmail')}
       bind:value={newEmail}
       required />
     <button class="btn btn--basic form__btn">{$_('common.confirm')}</button>
