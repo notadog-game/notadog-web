@@ -1,13 +1,14 @@
 {
   "common": {
+    "changeEmail": "Change email",
+    "changeName": "Change name",
+    "changePassword": "Change password",
     "connected": "Connected",
     "connecting": "Connecting...",
     "confirm": "Confirm",
     "create": "Create",
-    "email": "Email",
     "join": "Join",
     "home": "Home",
-    "index": "index",
     "game": "Game",
     "loading": "Loading",
     "login": "Login",
