@@ -7,6 +7,7 @@
   import enLocale from "../i18n/en.json";
   import ruLocale from "../i18n/ru.json";
 
+  import Progress from "./Progress.svelte";
   import Navigation from "./Navigation.svelte";
   import Home from "./Home.svelte";
   import Login from "./Login.svelte";
@@ -54,6 +55,8 @@
     }
   }
 </style>
+
+<Progress />
 
 <Router {url}>
   <Navigation />
