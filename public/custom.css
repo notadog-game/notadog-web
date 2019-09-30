@@ -52,6 +52,7 @@
   background-color: var(--NAD_BLACK);
   border: 1px solid var(--NAD_BLACK);
   color: var(--NAD_WHITE);
+  fill: var(--NAD_WHITE);
   display: flex;
   font-size: 16px;
   font-weight: 600;
@@ -60,19 +61,23 @@
   width: 100%;
 }
 
-.btn--basic:hover {
-  background-color: var(--NAD_WHITE);
-  color: var(--NAD_BLACK);
-  cursor: pointer;
-}
-
 .btn:disabled {
   background-color: var(--NAD_GREY);
 }
 
-.btn:disabled:hover {
-  color: var(--NAD_WHITE);
+@media (min-width: 768px) {
+  .btn--basic:hover {
+    background-color: var(--NAD_WHITE);
+    color: var(--NAD_BLACK);
+    fill: var(--NAD_BLACK);
+    cursor: pointer;
+  }
+
+  .btn:disabled:hover {
+    color: var(--NAD_WHITE);
+  }
 }
+
 .card {
   padding: 15px;
   border: 1px solid rgb(0, 0, 0, 0.25);
@@ -111,6 +116,17 @@
   padding: 5px;
   overflow: scroll;
   border: 1px solid var(--NAD_SERVICE);
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    font-size: 26px;
+    text-transform: lowercase;
+  }
+
+  .nav-link.active {
+    font-size: 34px;
+  }
 }
 
 .subnav > a {

@@ -1,13 +1,13 @@
 <script>
-  import { _ } from "svelte-i18n";
   import { beforeUpdate } from "svelte";
-  import { Router, Link, Route } from "svelte-routing";
+  import { Router, Route } from "svelte-routing";
   import { getNotificationsContext } from "svelte-notifications";
   import { locale, dictionary } from "svelte-i18n";
 
   import enLocale from "../i18n/en.json";
   import ruLocale from "../i18n/ru.json";
 
+  import Navigation from "./Navigation.svelte";
   import Home from "./Home.svelte";
   import Login from "./Login.svelte";
   import Signup from "./Signup.svelte";
@@ -30,12 +30,6 @@
   export let url = "";
   let myToken = "";
 
-  function logoutClickHandler(e) {
-    e.preventDefault();
-    tokenService.remove();
-    window.location.replace("/login");
-  }
-
   beforeUpdate(() => {
     myToken = tokenService.get();
   });
@@ -54,26 +48,17 @@
 </script>
 
 <style>
-
+  @media (min-width: 768px) {
+    .app {
+      padding-left: var(--NAD_SIDEBAR_WIDTH);
+    }
+  }
 </style>
 
 <Router {url}>
-  <nav>
-    <Link to="/">{$_('common.home')}</Link>
-    {#if myToken}
-      <Link to="game">{$_('common.game')}</Link>
-      <Link to="profile">{$_('common.profile')}</Link>
-      <Link to="settings">{$_('common.settings')}</Link>
-      <Link to="statistics">{$_('common.statistics')}</Link>
-      <Link to="styleguide">{$_('common.styleguide')}</Link>
-      <a href="#" on:click={logoutClickHandler}>{$_('common.logout')}</a>
-    {:else}
-      <Link to="login">{$_('common.login')}</Link>
-      <Link to="signup">{$_('common.signup')}</Link>
-    {/if}
-  </nav>
+  <Navigation />
 
-  <div>
+  <div class="app">
     <Route path="/" component={Home} />
     {#if myToken}
       <Route path="game" component={Game} />
