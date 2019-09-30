@@ -38,7 +38,7 @@ export class requestService {
 requestProvider.interceptors.response.use(
   res => res.data,
   error => {
-    axiosMiddlewareErrorsHandler(error.response);
+    axiosMiddlewareErrorsHandler(error);
     return Promise.reject(error);
   }
 );

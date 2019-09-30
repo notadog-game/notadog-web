@@ -5,7 +5,9 @@
   let newUsername = "";
 
   async function handleSubmit() {
-    await updateProfile({ name: newUsername });
+    try {
+      await updateProfile({ name: newUsername });
+    } catch (err) { console.log(err) }
   }
 </script>
 
