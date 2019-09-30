@@ -19,11 +19,11 @@ const errorCodeHandler = code => {
 };
 
 const errorStatusHandler = status => {
-  console.log("errorStatusHandler", status);
+  errors.set(status);
 };
 
-const errorHandler = error => {
-  console.log("errorHandler", error);
+const errorHandler = ({ message }) => {
+  errors.set(message);
 };
 
 export const globalHubErrorsHandler = ({ message }) => {
@@ -31,6 +31,9 @@ export const globalHubErrorsHandler = ({ message }) => {
   error.code ? errorCodeHandler(error.code) : errorHandler(error);
 };
 
-export const axiosMiddlewareErrorsHandler = ({ status, data }) => {
+export const axiosMiddlewareErrorsHandler = error => {
+  if (!error.response) return errorHandler(error);
+
+  const { status, data } = error.response;
   data ? errorCodeHandler(data.code) : errorStatusHandler(status);
 };

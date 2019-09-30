@@ -10,8 +10,12 @@
   let password1 = "";
 
   async function handleSubmit() {
-    const token = await signup({ name, email, password });
-    tokenService.set(token);
+    try {
+      const token = await signup({ name, email, password });
+      tokenService.set(token);
+    } catch (err) {
+      console.log(err);
+    }
   }
 </script>
 

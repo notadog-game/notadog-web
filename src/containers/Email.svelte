@@ -5,7 +5,11 @@
   let newEmail = "";
 
   async function handleSubmit() {
-    await updateProfile({ email: newEmail });
+    try {
+      await updateProfile({ email: newEmail });
+    } catch (err) {
+      console.log(err);
+    }
   }
 </script>
 

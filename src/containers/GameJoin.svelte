@@ -8,8 +8,12 @@
   let playersMaxCount = PLAYERS_MIN_COUNT;
 
   async function joinRoomHandler() {
-    await connectToPublicGame({ playersMaxCount });
-    navigate(`/game`, { replace: true });
+    try {
+      await connectToPublicGame({ playersMaxCount });
+      navigate(`/game`, { replace: true });
+    } catch (err) {
+      console.log(err);
+    }
   }
 </script>
 

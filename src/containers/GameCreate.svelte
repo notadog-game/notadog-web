@@ -4,8 +4,12 @@
   import { createGame } from "../services/api";
 
   async function createRoomHandler() {
-    await createGame();
-    navigate(`/game`, { replace: true });
+    try {
+      await createGame();
+      navigate(`/game`, { replace: true });
+    } catch (err) {
+      console.log(err);
+    }
   }
 </script>
 

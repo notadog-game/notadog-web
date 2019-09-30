@@ -8,9 +8,13 @@
   let password = "";
 
   async function handleSubmit() {
-    const token = await login({ email, password });
-    tokenService.set(token);
-    window.location.replace("/game");
+    try {
+      const token = await login({ email, password });
+      tokenService.set(token);
+      window.location.replace("/game");
+    } catch (err) {
+      console.log(err);
+    }
   }
 </script>
 
