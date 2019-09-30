@@ -27,8 +27,12 @@ const errorHandler = ({ message }) => {
 };
 
 export const globalHubErrorsHandler = ({ message }) => {
-  const error = JSON.parse(message.split("HubException: ")[1]);
-  error.code ? errorCodeHandler(error.code) : errorHandler(error);
+  try {
+    const error = JSON.parse(message.split("HubException: ")[1]);
+    error.code ? errorCodeHandler(error.code) : errorHandler(error);
+  } catch (err) {
+    errorHandler({ message });
+  }
 };
 
 export const axiosMiddlewareErrorsHandler = error => {
