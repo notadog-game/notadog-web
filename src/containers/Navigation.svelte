@@ -42,7 +42,7 @@
     padding: 25px 0 calc(50px + 0.5em) 0;
 
     background-color: rgba(255, 255, 255, 1);
-    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.05);
   }
 
   .hidden {
@@ -59,6 +59,7 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    border: 1px solid #fff;
   }
 
   @media (min-width: 768px) {
