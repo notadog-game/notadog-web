@@ -16,7 +16,7 @@
 
 <div class="container">
   <form class="form" on:submit|preventDefault={handleSubmit}>
-    <h1>{$_('titles.notadog')}</h1>
+    <h1>{$_('common.login')}</h1>
 
     <input
       class="input form__input"
