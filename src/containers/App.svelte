@@ -41,7 +41,7 @@
     if (!text) return;
 
     clearNotifications();
-    addNotification({ text, position: "bottom-center", removeAfter: 2500 });
+    addNotification({ text, position: "bottom-center" });
 
     errors.reset();
   });
@@ -50,7 +50,7 @@
 <style>
   @media (min-width: 768px) {
     .app {
-      padding-left: var(--NAD_SIDEBAR_WIDTH);
+      margin-left: var(--NAD_SIDEBAR_WIDTH);
     }
   }
 </style>
