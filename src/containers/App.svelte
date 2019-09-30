@@ -48,13 +48,17 @@
 </script>
 
 <style>
-
+  @media (min-width: 768px) {
+    .app {
+      padding-left: var(--NAD_SIDEBAR_WIDTH);
+    }
+  }
 </style>
 
 <Router {url}>
   <Navigation />
 
-  <div>
+  <div class="app">
     <Route path="/" component={Home} />
     {#if myToken}
       <Route path="game" component={Game} />
