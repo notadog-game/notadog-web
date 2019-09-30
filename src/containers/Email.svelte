@@ -16,7 +16,7 @@
     <input
       class="input form__input"
       type="email"
-      placeholder={$_('common.enter.newEmail')}
+      placeholder={$_('enter.newEmail')}
       bind:value={newEmail}
       required />
     <button class="btn btn--basic form__btn">{$_('common.confirm')}</button>

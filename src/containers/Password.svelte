@@ -23,14 +23,14 @@
     <input
       class="input form__input"
       type="password"
-      placeholder={$_('common.enter.newPassword')}
+      placeholder={$_('enter.newPassword')}
       bind:value={newPassword1}
       required />
 
     <input
       class="input form__input"
       type="password"
-      placeholder={$_('common.repeatPassword')}
+      placeholder={$_('enter.repeatPassword')}
       bind:value={newPassword2}
       required />
 

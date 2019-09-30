@@ -22,25 +22,25 @@
     <input
       class="input form__input"
       type="text"
-      placeholder={$_('common.enterName')}
+      placeholder={$_('enter.name')}
       bind:value={name} />
 
     <input
       class="input form__input"
       type="text"
-      placeholder={$_('common.enterEmail')}
+      placeholder={$_('enter.email')}
       bind:value={email} />
 
     <input
       class="input form__input"
       type="password"
-      placeholder={$_('common.enterPassword')}
+      placeholder={$_('enter.password')}
       bind:value={password} />
 
     <input
       class="input form__input"
       type="password"
-      placeholder={$_('common.repeatPassword')}
+      placeholder={$_('enter.repeatPassword')}
       bind:value={password1} />
 
     <button class="btn btn--basic form__btn">{$_('common.signup')}</button>

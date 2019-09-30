@@ -17,7 +17,6 @@
     "password": "Password",
     "profile": "Profile",
     "refresh": "refresh",
-    "repeatPassword": "Repeat password",
     "settings": "Settings",
     "statistics": "Statistics",
     "styleguide": "Syleguide",
@@ -30,7 +29,8 @@
     "newEmail": "Enter new email",
     "newName": "Enter new name",
     "newPassword": "Enter new password",
-    "password": "Enter your password"
+    "password": "Enter your password",
+    "repeatPassword": "Repeat password"
   },
   "game": {
     "copyLink": "Copy game link",
