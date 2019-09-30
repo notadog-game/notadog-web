@@ -2,6 +2,7 @@ import axios from "axios";
 import { tokenService } from "./token";
 import { config } from "../config.js";
 import { axiosMiddlewareErrorsHandler } from "../store/errors";
+import { progress } from "../store/progress";
 
 if (config.apiHost == "undefined") {
   console.error("Missing API host!");
@@ -35,9 +36,24 @@ export class requestService {
   }
 }
 
+requestProvider.interceptors.request.use(
+  function(config) {
+    progress.inc();
+    return config;
+  },
+  function(error) {
+    progress.dec();
+    return Promise.reject(error);
+  }
+);
+
 requestProvider.interceptors.response.use(
-  res => res.data,
+  res => {
+    progress.dec();
+    return res.data;
+  },
   error => {
+    progress.dec();
     axiosMiddlewareErrorsHandler(error);
     return Promise.reject(error);
   }
