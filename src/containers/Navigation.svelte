@@ -7,7 +7,7 @@
   import MenuIcon from "../components/icons/MenuIcon.svelte";
 
   let myToken = "";
-  let isNavVisible = true;
+  let isNavVisible = false;
 
   beforeUpdate(() => {
     myToken = tokenService.get();
