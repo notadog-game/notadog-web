@@ -1,1 +1,56 @@
-{}
+{
+  "common": {
+    "changeEmail": "Изменить email",
+    "changeName": "Изменить имя",
+    "changePassword": "Изменить пароль",
+    "changeLanguage": "Изменить язык",
+    "connected": "Подключено",
+    "connecting": "Соединение...",
+    "confirm": "Подтвердить",
+    "create": "Создать",
+    "join": "Присоединиться",
+    "home": "Главная",
+    "game": "Игра",
+    "loading": "Загрузка",
+    "login": "Войти",
+    "loginTitle": "Вход",
+    "logout": "Выйти",
+    "name": "Имя",
+    "notadogTitle": "Я не пёс!",
+    "password": "Пароль",
+    "profile": "Профиль",
+    "refresh": "Перезагрузить",
+    "settings": "Настройки",
+    "statistics": "Статистика",
+    "styleguide": "Стили",
+    "signup": "Регистрация",
+    "update": "Обновить"
+  },
+  "enter": {
+    "email": "Введите ваш email",
+    "name": "Введите вашe имя",
+    "newEmail": "Введите новый email",
+    "newName": "Введите новое имя",
+    "newPassword": "Введите новый пароль",
+    "password": "Введите ваш пароль",
+    "repeatPassword": "Повторите пароль"
+  },
+  "game": {
+    "copyLink": "Скопировать ссылку",
+    "createRoom": "Создать комнату",
+    "forceJoin": "Все равно зайти",
+    "joinPublicRoom": "Присоединиться",
+    "leaveRoom": "Покинуть комнату",
+    "loose": "Вы пёс =(",
+    "playingStateTitle": "Игра",
+    "replay": "Перезапустить игру",
+    "start": "Начать игру",
+    "waitingPlayersTitle": "Ожидание  игроков",
+    "waitingStartTitles": "Ожидание  старта",
+    "win": "Вы не пёс! =)"
+  },
+  "questions": {
+    "wantToLogin": "Уже есть аккаунт?",
+    "wantToSignup": "Хотите зарегистрироваться?"
+  }
+}
