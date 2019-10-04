@@ -13,6 +13,7 @@
     "game": "Game",
     "loading": "Loading",
     "login": "Login",
+    "loginTitle": "Login",
     "logout": "Logout",
     "name": "Name",
     "notadogTitle": "Not a Dog!",
