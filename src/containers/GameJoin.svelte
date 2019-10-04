@@ -18,7 +18,6 @@
 </script>
 
 <div class="container">
-  <h1>{$_('game.joinGameTitle')}</h1>
   <RangeSelect
     bind:value={playersMaxCount}
     min={PLAYERS_MIN_COUNT}

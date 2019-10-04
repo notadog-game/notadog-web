@@ -1,5 +1,5 @@
 <script>
-  import { beforeUpdate } from "svelte";
+  import { onMount, beforeUpdate } from "svelte";
   import { Router, Route } from "svelte-routing";
   import { getNotificationsContext } from "svelte-notifications";
   import { locale, dictionary } from "svelte-i18n";
@@ -24,19 +24,50 @@
   import Styleguide from "./Styleguide.svelte";
 
   import { tokenService } from "../services/token";
+  import { localeService } from "../services/locale";
   import { errors } from "../store/errors";
+  import { EN_LOCALE_VALUE, RU_LOCALE_VALUE } from "../constants/i18n";
 
   const { addNotification, clearNotifications } = getNotificationsContext();
 
   export let url = "";
   let myToken = "";
+  let isLocalesLoaded = false;
+
+  onMount(() => {
+    loadLocales();
+    isLocalesLoaded = true;
+  });
 
   beforeUpdate(() => {
     myToken = tokenService.get();
   });
 
-  dictionary.set({ en: enLocale, ru: ruLocale });
-  locale.set("en");
+  function loadLocales() {
+    dictionary.set({
+      [EN_LOCALE_VALUE]: enLocale,
+      [RU_LOCALE_VALUE]: ruLocale,
+    });
+
+    const savedLocale = localeService.get();
+    if (savedLocale) {
+      locale.set(savedLocale);
+      return;
+    }
+
+    const navigatorLocale = navigator.language.split("-")[0];
+    if ($dictionary[navigatorLocale]) {
+      locale.set(navigatorLocale);
+      return;
+    }
+
+    locale.set(EN_LOCALE_VALUE);
+  }
+
+  locale.subscribe(value => {
+    if (typeof value !== "string") return;
+    localeService.set(value);
+  });
 
   errors.subscribe(text => {
     if (!text) return;
@@ -58,24 +89,26 @@
 
 <Progress />
 
-<Router {url}>
-  <Navigation />
+{#if isLocalesLoaded}
+  <Router {url}>
+    <Navigation />
 
-  <div class="app">
-    <Route path="/" component={Home} />
-    {#if myToken}
-      <Route path="game" component={Game} />
-      <Route path="game/:id" let:params; component={GameId} />
-      <Route path="game/create" component={GameCreate} />
-      <Route path="game/join" component={GameJoin} />
-      <Route path="profile/*" component={Profile} />
-      <Route path="settings/*" component={Settings} />
-      <Route path="statistics" component={Statistics} />
-      <Route path="styleguide" component={Styleguide} />
-    {:else}
-      <Route path="login" component={Login} />
-      <Route path="signup" component={Signup} />
-    {/if}
-    <Route path="*" component={Empty} />
-  </div>
-</Router>
+    <div class="app">
+      <Route path="/" component={Home} />
+      {#if myToken}
+        <Route path="game" component={Game} />
+        <Route path="game/:id" let:params; component={GameId} />
+        <Route path="game/create" component={GameCreate} />
+        <Route path="game/join" component={GameJoin} />
+        <Route path="profile/*" component={Profile} />
+        <Route path="settings" component={Settings} />
+        <Route path="statistics" component={Statistics} />
+        <Route path="styleguide" component={Styleguide} />
+      {:else}
+        <Route path="login" component={Login} />
+        <Route path="signup" component={Signup} />
+      {/if}
+      <Route path="*" component={Empty} />
+    </div>
+  </Router>
+{/if}

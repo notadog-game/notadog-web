@@ -1,26 +1,31 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { onMount } from "svelte";
+  import { _, locale } from "svelte-i18n";
+  import { LOCALES } from "../constants/i18n";
+  import { localeService } from "../services/locale";
 
-  import Index from "./SettingsIndex.svelte";
-  import Notifications from "./Notifications.svelte";
+  let selectedLanguage;
 
-  export let url = "";
+  onMount(() => {
+    selectedLanguage = localeService.get();
+  });
+
+  function localeChangeHandler() {
+    locale.set(selectedLanguage);
+  }
 </script>
 
 <style>
 
 </style>
 
-<h1>Settings</h1>
+<h1>{$_('common.settings')}</h1>
 
-<Router {url}>
-  <nav>
-    <Link to="/">Index</Link>
-    <Link to="notifications">Notifications</Link>
-  </nav>
-  <div>
-    <Route path="/" component={Index} />
-    <Route path="notifications" component={Notifications} />
-  </div>
-
-</Router>
+<div class="container">
+  <span>{$_('common.changeLanguage')}</span>
+  <select bind:value={selectedLanguage} on:change={localeChangeHandler}>
+    {#each LOCALES as locale}
+      <option value={locale.value}>{locale.title}</option>
+    {/each}
+  </select>
+</div>

@@ -1,6 +1,7 @@
 {
   "common": {
     "changeEmail": "Change email",
+    "changeLanguage": "Change language",
     "changeName": "Change name",
     "changePassword": "Change password",
     "connected": "Connected",
