@@ -19,7 +19,6 @@
   border: none;
   border-bottom: 1px solid var(--NAD_MILK);
   color: var(--NAD_BLACK);
-  font-family: Poppins;
   min-width: 0;
   padding: 20px 10px;
   width: 100%;
@@ -134,7 +133,6 @@
   border: none;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  font-family: Poppins;
   font-size: 16px;
   height: 63px;
   line-height: 63px;
