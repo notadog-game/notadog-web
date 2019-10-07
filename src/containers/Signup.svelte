@@ -13,6 +13,7 @@
     try {
       const token = await signup({ name, email, password });
       tokenService.set(token);
+      window.location.replace("/game");
     } catch (err) {
       console.log(err);
     }

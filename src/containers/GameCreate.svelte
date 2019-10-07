@@ -14,6 +14,7 @@
 </script>
 
 <div class="container">
+  <h1>{$_('common.game')}</h1>
   <button class="btn btn--basic" on:click={createRoomHandler}>
     {$_('game.createRoom')}
   </button>
