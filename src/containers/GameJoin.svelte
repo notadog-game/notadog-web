@@ -18,6 +18,7 @@
 </script>
 
 <div class="container">
+  <h1>{$_('common.game')}</h1>
   <RangeSelect
     bind:value={playersMaxCount}
     min={PLAYERS_MIN_COUNT}
