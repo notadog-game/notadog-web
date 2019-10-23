@@ -2,6 +2,8 @@
   import { _ } from "svelte-i18n";
   import { onMount } from "svelte";
   import { users, loadUsersAction } from "../store/users";
+  import UserCard from "../components/UserCard.svelte";
+  import RefreshButton from "../components/RefreshButton.svelte";
 
   async function refreshClickHandler() {
     loadUsersAction();
@@ -13,18 +15,40 @@
 </script>
 
 <style>
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .user-list {
+    overflow: scroll;
+    height: calc(100vh - 100px);
+  }
+
+  @media (min-width: 768px) {
+    .user-list {
+      margin-bottom: 25px;
+      height: calc(100vh - 125px);
+    }
+  }
+
+  .user-list > li {
+    margin-top: 25px;
+  }
 </style>
 
-<h1>{$_('common.statistics')}</h1>
+<div class="header">
+  <h1>{$_('common.statistics')}</h1>
+  <RefreshButton on:click={refreshClickHandler} />
+</div>
+
 <div class="container">
-  <ul>
+  <ul class="user-list">
     {#each $users as user (user.id)}
-      <li>{user.email}</li>
+      <li>
+        <UserCard {user} />
+      </li>
     {/each}
   </ul>
-
-  <button class="btn btn--basic" on:click={refreshClickHandler}>
-    {$_('common.statistics')}
-  </button>
 </div>
