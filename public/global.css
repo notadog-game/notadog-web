@@ -17,6 +17,9 @@ body {
   --NAD_MILK: #e6e6e6;
   --NAD_BLUE: #0960bd;
   --NAD_BG: #d8d8d8;
+  --NAD_ERROR: #c82333;
+  --NAD_WARNING: #ffc107;
+  --NAD_SUCCESS: #28a745;
 
   --NAD_SIDEBAR_WIDTH: 300px;
 

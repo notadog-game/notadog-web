@@ -73,7 +73,11 @@
     if (!text) return;
 
     clearNotifications();
-    addNotification({ text, position: "bottom-center", removeAfter: 2500 });
+    addNotification({
+      text,
+      position: "bottom-center",
+      classes: "error",
+    });
 
     errors.reset();
   });
